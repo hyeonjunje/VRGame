@@ -6,7 +6,11 @@ using System.IO.Ports;
 
 public class Test : MonoBehaviour
 {
+    [SerializeField] private InputController ic;
+
     SerialPort serialPort = new SerialPort("COM4", 9600);
+
+    private bool startSerial = false;
 
     private void Start()
     {
@@ -21,6 +25,8 @@ public class Test : MonoBehaviour
             if(serialPort.IsOpen)
             {
                 Debug.Log(serialPort.ReadLine());
+
+                ic.dataString = serialPort.ReadLine();
             }
         }
         catch(System.Exception e)

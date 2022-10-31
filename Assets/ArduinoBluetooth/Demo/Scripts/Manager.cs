@@ -22,9 +22,12 @@ public class Manager : MonoBehaviour {
 	[SerializeField]
 	Button Btn_Disconnect;
 
+	[SerializeField]
+	private InputController ic;
+
 	public Text Txt_Door;
 
-	string received_message;
+	public string received_message;
 	// 외부에서 접근하여 사용할 수 있습니다.
 	// 외부 다른 클래스에서 Manager 함수로 접근하여 Start 펑션에서 다음과 같이 사용하시면 됩니다.
 	//===============================================
@@ -113,6 +116,7 @@ public class Manager : MonoBehaviour {
 	void OnMessageReceived () {
 		received_message = bluetoothHelper.Read ();
 		Debug.Log(received_message);
+		ic.dataString = received_message;
 
 		if (received_message.Contains ("on")) {
 			Txt_Door.text = "Door is close";
