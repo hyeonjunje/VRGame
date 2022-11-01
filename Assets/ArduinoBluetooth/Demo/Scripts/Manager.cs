@@ -36,8 +36,10 @@ public class Manager : MonoBehaviour {
 	//===============================================
 	public UnityEvent onDoorOpen, onDoorClose;
 
-	void Start () {
-		Btn_Connect.onClick.AddListener (() => {
+
+	public void StartBluetoothCom()
+    {
+		Btn_Connect.onClick.AddListener(() => {
 			deviceName = "VRBT";
 			bluetoothHelper = BluetoothHelper.GetInstance(deviceName);
 			Debug.Log(bluetoothHelper);
@@ -60,44 +62,23 @@ public class Manager : MonoBehaviour {
 			else
 				Debug.Log("없음");
 
-			if (bluetoothHelper.isDevicePaired ()) {
-				Debug.Log ("try to connect");
-				bluetoothHelper.Connect (); // tries to connect
-			} else {
-				Debug.Log ("not DevicePaired");
+			if (bluetoothHelper.isDevicePaired())
+			{
+				Debug.Log("try to connect");
+				bluetoothHelper.Connect(); // tries to connect
+			}
+			else
+			{
+				Debug.Log("not DevicePaired");
 			}
 		});
-		Btn_Disconnect.onClick.AddListener (() => {
-			bluetoothHelper.Disconnect ();
-			Debug.Log ("try to Disconnect");
+		Btn_Disconnect.onClick.AddListener(() => {
+			bluetoothHelper.Disconnect();
+			Debug.Log("try to Disconnect");
 		});
-		//=============================================================================================
-		//=============================================================================================
-
-		deviceName = "VRBT"; //bluetooth should be turned ON; // 페어링되는 아두이노 블루투스 이름과 같아야 합니다.
-		
-		//=============================================================================================
-		//=============================================================================================
-		/*try {
-			bluetoothHelper = BluetoothHelper.GetInstance (deviceName);
-			Debug.Log(bluetoothHelper);
-			bluetoothHelper.OnConnected += OnConnected;
-			bluetoothHelper.OnConnectionFailed += OnConnectionFailed;
-			bluetoothHelper.OnDataReceived += OnMessageReceived; //read the data
-
-			bluetoothHelper.setTerminatorBasedStream ("\n");
-
-			if (bluetoothHelper.isDevicePaired ())
-				Toggle_isDevicePaired.isOn = true;
-			else
-				Toggle_isDevicePaired.isOn = false;
-		} catch (Exception ex) {
-			Toggle_isDevicePaired.isOn = false;
-			Debug.Log (ex.Message);
-		}*/
 	}
 
-	// Update is called once per frame
+
 	void Update () {
 
 		if (Input.GetKeyUp (KeyCode.Alpha0)) {
@@ -112,13 +93,16 @@ public class Manager : MonoBehaviour {
 		}
 	}
 
+
 	//Asynchronous method to receive messages
 	void OnMessageReceived () {
 		received_message = bluetoothHelper.Read ();
 		Debug.Log(received_message);
 		ic.dataString = received_message;
 
-		if (received_message.Contains ("on")) {
+
+		// ==================================  이런식으로 하면 될듯
+		/*if (received_message.Contains ("on")) {
 			Txt_Door.text = "Door is close";
 			onDoorClose.Invoke();
 		}
@@ -126,8 +110,10 @@ public class Manager : MonoBehaviour {
 		if (received_message.Contains ("off")) {
 			Txt_Door.text = "Door is open";
 			onDoorOpen.Invoke();
-		}
+		}*/
+		// ==================================  ==================================
 	}
+
 
 	void OnConnected () {
 		Toggle_isConnected.isOn = true;
@@ -139,10 +125,12 @@ public class Manager : MonoBehaviour {
 		}
 	}
 
+
 	void OnConnectionFailed () {
 		Toggle_isConnected.isOn = false;
 		Debug.Log ("Connection Failed");
 	}
+
 
 	//Call this function to emulate message receiving from bluetooth while debugging on your PC.
 	void OnGUI () {

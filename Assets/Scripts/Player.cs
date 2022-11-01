@@ -10,13 +10,11 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform gunHandle;
 
     [Header("캐릭터 정보")]
-    [SerializeField] private float playerSpeed;
+    [SerializeField] private float playerSpeed;        // 캐릭터 속도
+    [SerializeField] private float gunRotSensitivity;  // 총 회전 민감도
 
     private Gun gun => gunPivot.GetComponent<Gun>();
     private bool isShoot = false;
-
-    private bool isStartGunRotation = false;
-    private Vector3 offset;
 
     private Animator animator;
     private Rigidbody myRigid;
@@ -31,7 +29,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        TryShoot();
+        TryShoot();                  // 총 쏘기 시도
     }
 
 
@@ -46,14 +44,7 @@ public class Player : MonoBehaviour
 
     private void MovePlayer()
     {
-        float xMove = (ic.InputData["Horizontal"] - 518) / 518;
-        float zMove = (ic.InputData["Vertical"] - 518) / 518;
-
-        xMove = Mathf.Abs(xMove - 0) < 0.1f ? 0f : xMove;
-        zMove = Mathf.Abs(zMove - 0) < 0.1f ? 0f : zMove;
-
-        Vector3 dir = new Vector3(xMove, 0, zMove).normalized * playerSpeed;
-        myRigid.velocity = dir;
+        myRigid.velocity = ic.moveDir * playerSpeed;
     }
 
 
@@ -64,26 +55,10 @@ public class Player : MonoBehaviour
 
     private void GunRotation()
     {
-        if(!isStartGunRotation)
-        {
-            //offset = new Vector3(ic.InputData["AngleX"], ic.InputData["AngleY"], ic.InputData["AngleZ"]);
-            offset = new Vector3(-ic.InputData["AngleY"], -ic.InputData["AngleX"], -ic.InputData["AngleZ"]);
-            isStartGunRotation = true;
-        }
-        else
-        {
-            Vector3 rotation = new Vector3(-ic.InputData["AngleY"], -ic.InputData["AngleX"], -ic.InputData["AngleZ"]);
-
-            gunPivot.rotation = Quaternion.Euler(rotation - offset);
-        }
+        gunPivot.rotation = Quaternion.Euler(ic.gunRotAngle);
+        Debug.Log(gunPivot.rotation);
     }
 
-
-    public void InitGunRotation()
-    {
-        Debug.Log("눌림");
-        offset = new Vector3(-ic.InputData["AngleY"], -ic.InputData["AngleX"], -ic.InputData["AngleZ"]);
-    }
 
 
     private void AimGun()
@@ -93,7 +68,7 @@ public class Player : MonoBehaviour
 
     private void TryShoot()
     {
-        if (ic.InputData["Fire"] == 0)
+        if (ic.isFire)
         {
             if (!isShoot)
             {
@@ -101,7 +76,7 @@ public class Player : MonoBehaviour
                 isShoot = true;
             }
         }
-        else if(ic.InputData["Fire"] == 1)
+        else
             isShoot = false;
     }
 

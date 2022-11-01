@@ -4,7 +4,7 @@ using UnityEngine;
 using System.IO.Ports;
 
 
-public class Test : MonoBehaviour
+public class SerialCom : MonoBehaviour
 {
     [SerializeField] private InputController ic;
 
@@ -12,8 +12,12 @@ public class Test : MonoBehaviour
 
     private bool startSerial = false;
 
-    private void Start()
+
+    public void StartSerialCom()
     {
+        // 이미 켜져있다면 return
+        if (serialPort.IsOpen)
+            return;
         Debug.Log(serialPort);
         serialPort.Open();
     }
