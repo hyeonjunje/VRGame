@@ -66,6 +66,9 @@ public class InputController : MonoBehaviour
     /// </summary>
     private void ProcessingInfo()
     {
+        if (!InputData.ContainsKey("Fire"))
+            return;
+
         isFire = InputData["Fire"] == 0 ? true : false;
 
         float xMove = (InputData["Horizontal"] - 518) / 518;
