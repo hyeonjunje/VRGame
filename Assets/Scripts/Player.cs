@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -15,12 +17,17 @@ public class Player : MonoBehaviour
     [SerializeField] private float playerSpeed;        // 캐릭터 속도
     [SerializeField] private float gunRotSensitivity;  // 총 회전 민감도
 
+    [Header("UI")]
+    [SerializeField] private Button innerGyro;
+    [SerializeField] private Text innerGyroText;
+
     private Gun gun => gunPivot.GetComponent<Gun>();
     private bool isShoot = false;
 
     private Animator animator;
     private Rigidbody myRigid;
 
+    private bool isInnerGyro = false;
 
     private void Start()
     {
@@ -28,8 +35,24 @@ public class Player : MonoBehaviour
         myRigid = GetComponent<Rigidbody>();
 
         Input.gyro.enabled = true;  // 휴대폰 내장 자이로 센서 enabled
+
+        innerGyro.onClick.AddListener(() => SetGyro());
     }
 
+    private void SetGyro()
+    {
+        // 켜져있을때 누르면 꺼짐
+        if(isInnerGyro)  
+        {
+            innerGyroText.text = "Off";
+            isInnerGyro = false;
+        }
+        else
+        {
+            innerGyroText.text = "On";
+            isInnerGyro = true;
+        }
+    }
 
     private void Update()
     {
@@ -54,15 +77,14 @@ public class Player : MonoBehaviour
 
     private void PlayerRotation()
     {
-        
-        //cam.Rotate(-Input.gyro.rotationRateUnbiased.x, -Input.gyro.rotationRateUnbiased.y, -Input.gyro.rotationRateUnbiased.z);
+        if(isInnerGyro)
+            cam.Rotate(-Input.gyro.rotationRateUnbiased.x, -Input.gyro.rotationRateUnbiased.y, -Input.gyro.rotationRateUnbiased.z);
     }
 
 
     private void GunRotation()
     {
         gunPivot.rotation = Quaternion.Euler(ic.gunRotAngle);
-        Debug.Log(gunPivot.rotation);
     }
 
 

@@ -82,14 +82,10 @@ public class Manager : MonoBehaviour {
 	void Update () {
 
 		if (Input.GetKeyUp (KeyCode.Alpha0)) {
-			if (!isDebugOn) {
-				isDebugOn = true;
-				DebugHolder.SetActive (true);
-			} else {
-				isDebugOn = false;
-				DebugHolder.SetActive (false);
-				myLog = "reset";
-			}
+			if (DebugHolder.activeSelf)
+				DebugHolder.SetActive(false);
+			else
+				DebugHolder.SetActive(true);
 		}
 	}
 
@@ -132,65 +128,14 @@ public class Manager : MonoBehaviour {
 	}
 
 
-	//Call this function to emulate message receiving from bluetooth while debugging on your PC.
-	void OnGUI () {
-		if (isDebugOn) {
-			if (bluetoothHelper != null)
-				bluetoothHelper.DrawGUI ();
-			else
-				return;
-
-			if (!bluetoothHelper.isConnected ()) {
-				Btn_Connect.interactable = true;
-				Btn_Disconnect.interactable = false;
-				Toggle_isConnected.isOn = false;
-			}
-
-			if (bluetoothHelper.isConnected ()) {
-				Btn_Connect.interactable = false;
-				Btn_Disconnect.interactable = true;
-				Toggle_isConnected.isOn = true;
-			}
-
-			// Screen Debug
-			GUIStyle myStyle = new GUIStyle ();
-			myStyle.fontSize = 16;
-			myStyle.normal.textColor = Color.blue;
-			GUI.Label (new Rect (10, 100, 1080, 1920), myLog, myStyle);
-		}
-	}
-
 	void OnDestroy () {
 		if (bluetoothHelper != null)
 			bluetoothHelper.Disconnect ();
 	}
 
+
 	void OnApplicationQuit () {
 		if (bluetoothHelper != null)
 			bluetoothHelper.Disconnect ();
-	}
-
-	// Screen Debug
-	bool isDebugOn = true;
-	string myLog;
-	Queue myLogQueue = new Queue ();
-	void OnEnable () {
-		Application.logMessageReceived += HandleLog;
-	}
-	void OnDisable () {
-		Application.logMessageReceived -= HandleLog;
-	}
-	void HandleLog (string logString, string stackTrace, LogType type) {
-		myLog = logString;
-		string newString = "[" + type + "] : " + myLog + "\n";
-		myLogQueue.Enqueue (newString);
-		if (type == LogType.Exception) {
-			newString = "\n" + stackTrace;
-			myLogQueue.Enqueue (newString);
-		}
-		myLog = string.Empty;
-		foreach (string mylog in myLogQueue) {
-			myLog += mylog;
-		}
 	}
 }
