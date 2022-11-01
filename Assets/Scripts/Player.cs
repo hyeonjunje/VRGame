@@ -7,7 +7,8 @@ public class Player : MonoBehaviour
     [Header("연결")]
     [SerializeField] private InputController ic;
     [SerializeField] private Transform gunPivot;
-    [SerializeField] private Transform gunHandle;
+    [SerializeField] private Transform gunLeftHandPos;
+    [SerializeField] private Transform gunRightHandPos;
 
     [Header("캐릭터 정보")]
     [SerializeField] private float playerSpeed;        // 캐릭터 속도
@@ -86,14 +87,14 @@ public class Player : MonoBehaviour
         animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1.0f);
         animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1.0f);
 
-        animator.SetIKPosition(AvatarIKGoal.LeftHand, gunHandle.position);
-        animator.SetIKRotation(AvatarIKGoal.LeftHand, gunHandle.rotation);
+        animator.SetIKPosition(AvatarIKGoal.LeftHand, gunLeftHandPos.position);
+        animator.SetIKRotation(AvatarIKGoal.LeftHand, gunLeftHandPos.rotation);
 
 
         animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1.0f);
         animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1.0f);
 
-        animator.SetIKPosition(AvatarIKGoal.RightHand, gunHandle.position);
-        animator.SetIKRotation(AvatarIKGoal.RightHand, gunHandle.rotation);
+        animator.SetIKPosition(AvatarIKGoal.RightHand, gunRightHandPos.position);
+        animator.SetIKRotation(AvatarIKGoal.RightHand, gunRightHandPos.rotation);
     }
 }
