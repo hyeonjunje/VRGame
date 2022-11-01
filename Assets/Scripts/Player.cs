@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform gunPivot;
     [SerializeField] private Transform gunLeftHandPos;
     [SerializeField] private Transform gunRightHandPos;
+    [SerializeField] private Transform cam;
 
     [Header("캐릭터 정보")]
     [SerializeField] private float playerSpeed;        // 캐릭터 속도
@@ -25,6 +26,8 @@ public class Player : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         myRigid = GetComponent<Rigidbody>();
+
+        Input.gyro.enabled = true;  // 휴대폰 내장 자이로 센서 enabled
     }
 
 
@@ -51,6 +54,8 @@ public class Player : MonoBehaviour
 
     private void PlayerRotation()
     {
+        
+        //cam.Rotate(-Input.gyro.rotationRateUnbiased.x, -Input.gyro.rotationRateUnbiased.y, -Input.gyro.rotationRateUnbiased.z);
     }
 
 

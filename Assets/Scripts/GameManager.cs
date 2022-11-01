@@ -38,4 +38,15 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+
+    [SerializeField] private InputController inputController;
+
+    private void Update()
+    {
+        if(inputController.isFire)
+        {
+            serialCom.SetActive(false);
+            bluetoothCom.SetActive(false);
+        }
+    }
 }

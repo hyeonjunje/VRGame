@@ -773,9 +773,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1842cffb9ff9268498fea60993e32839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputType: 2
+  _inputType: 1
   serialCom: {fileID: 1461249105}
   bluetoothCom: {fileID: 4016231856567924795}
+  inputController: {fileID: 3212935505806120496}
 --- !u!4 &1044530870
 Transform:
   m_ObjectHideFlags: 0
@@ -1953,6 +1954,7 @@ MonoBehaviour:
   gunPivot: {fileID: 726642775}
   gunLeftHandPos: {fileID: 1232232823}
   gunRightHandPos: {fileID: 21789414}
+  cam: {fileID: 963194228}
   playerSpeed: 5
   gunRotSensitivity: 1
 --- !u!114 &3212935505806120496
