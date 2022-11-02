@@ -1,10 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Player : LivingEntity
 {
     [Header("연결")]
     [SerializeField] private InputController ic;
@@ -37,6 +36,8 @@ public class Player : MonoBehaviour
         Input.gyro.enabled = true;  // 휴대폰 내장 자이로 센서 enabled
 
         innerGyro.onClick.AddListener(() => SetGyro());
+
+        currentHp = hp;
     }
 
     private void SetGyro()
@@ -88,7 +89,6 @@ public class Player : MonoBehaviour
     }
 
 
-
     private void AimGun()
     {
     }
@@ -123,5 +123,25 @@ public class Player : MonoBehaviour
 
         animator.SetIKPosition(AvatarIKGoal.RightHand, gunRightHandPos.position);
         animator.SetIKRotation(AvatarIKGoal.RightHand, gunRightHandPos.rotation);
+    }
+
+    public override void Hit()
+    {
+        Debug.Log("아야");
+    }
+
+
+    public override void Dead()
+    {
+
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Hands")
+        {
+            Hit();
+        }
     }
 }

@@ -18,13 +18,23 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
-        //Instantiate(bulletPrefabs, gunHole.position, gunHole.rotation);
-
-        Debug.Log("일단 쐈다.");
-
-        if(Physics.Raycast(gunHole.position, gunHole.forward, out hit, 100f, LayerMask.NameToLayer("Enemy")))
+        if (Physics.Raycast(gunHole.position, gunHole.forward, out hit, 100f, 1 << LayerMask.NameToLayer("HitBox")))
         {
-            Debug.Log(hit.transform.name + "맞았다.");
+            // 적의 히트박스에 총이 맞을경우
+            if (hit.transform.gameObject.layer == LayerMask.NameToLayer("HitBox"))
+            {
+                // 머리에 맞을경우
+                if(hit.transform.tag == "Head")
+                {
+                    hit.transform.root.GetComponent<Zombie>().HitHead();
+                    Debug.Log(hit.transform.root.GetComponent<Zombie>().name);
+                }
+                else
+                {
+                    hit.transform.root.GetComponent<Zombie>().Hit();
+                    Debug.Log(hit.transform.root.GetComponent<Zombie>().name);
+                }
+            }
         }
     }
 }
