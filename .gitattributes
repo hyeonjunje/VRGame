@@ -1,0 +1,5 @@
+Assets/shooting/Player/Ch15_nonPBR@Walking.fbx filter=lfs diff=lfs merge=lfs -text
+Assets/Model/Player/. filter=lfs diff=lfs merge=lfs -text
+Assets/Model/Zombie/. filter=lfs diff=lfs merge=lfs -text
+Assets/Model/Zombie/Ch10_nonPBR@Zombie[[:space:]]Attack.fbx filter=lfs diff=lfs merge=lfs -text
+Assets/Model/Player/Ch15_nonPBR@Walking.fbx filter=lfs diff=lfs merge=lfs -text
