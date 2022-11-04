@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO.Ports;
+using System.Threading;
+using System.Threading.Tasks;
 
 
 public class SerialCom : MonoBehaviour
@@ -12,6 +14,7 @@ public class SerialCom : MonoBehaviour
 
     private bool startSerial = false;
 
+    private Thread thread;
 
     public void StartSerialCom()
     {
@@ -19,28 +22,28 @@ public class SerialCom : MonoBehaviour
         if (serialPort.IsOpen)
             return;
         Debug.Log(serialPort);
+
         serialPort.Open();
+
+        thread = new Thread(DataReveive);
+        thread.Start();
     }
 
-    private void Update()
+
+    void DataReveive()
     {
-        try
+        int a = 0;
+        while(true)
         {
-            if(serialPort.IsOpen)
-            {
-                Debug.Log(serialPort.ReadLine());
-
-                ic.dataString = serialPort.ReadLine();
-            }
-        }
-        catch(System.Exception e)
-        {
-            Debug.Log(e);
+            ic.dataString = serialPort.ReadLine();
+            Debug.Log(ic.dataString);
         }
     }
+
 
     private void OnApplicationQuit()
     {
+        thread.Abort();
         serialPort.Close();
     }
 }

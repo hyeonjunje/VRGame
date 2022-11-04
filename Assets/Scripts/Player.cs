@@ -24,14 +24,14 @@ public class Player : LivingEntity
     private bool isShoot = false;
 
     private Animator animator;
-    private Rigidbody myRigid;
+    private CharacterController character;
 
     private bool isInnerGyro = false;
 
     private void Start()
     {
+        character = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        myRigid = GetComponent<Rigidbody>();
 
         Input.gyro.enabled = true;  // 휴대폰 내장 자이로 센서 enabled
 
@@ -65,21 +65,31 @@ public class Player : LivingEntity
     {
         AimGun();                    // 컨트롤러의 자이로 센서 (가속도 값)을 이용해 총 움직이게 하기
         GunRotation();               // 컨트롤러의 자이로 센서 (각속도 값)을 이용해 총 회전하게 하기
-        PlayerRotation();            // 머리의 자이로 센서(각속도 값)을 이용해 플레이어 머리 회전하게 하기
+        PlayerHeadRotation();        // 휴대폰 내장 자이로 센서를 이용해 플레이어 머리 회전하게 하기
+        PlayerRotation();            // 상체의 자이로 센서를 이용해 플레이어 회전
         MovePlayer();                // 조이스틱을 이용하여 플레이어 이동하게 하기
     }
 
 
     private void MovePlayer()
     {
-        myRigid.velocity = ic.moveDir * playerSpeed;
+        Vector3 moveDir = new Vector3(ic.moveDir.x * playerSpeed, -9.8f, ic.moveDir.z * playerSpeed);
+        character.Move(transform.rotation * moveDir * Time.deltaTime);
+
+        animator.SetBool("isWalking", ic.moveDir != Vector3.zero);
+    }
+
+
+    private void PlayerHeadRotation()
+    {
+        if(isInnerGyro)
+            cam.Rotate(-Input.gyro.rotationRateUnbiased.x, -Input.gyro.rotationRateUnbiased.y, -Input.gyro.rotationRateUnbiased.z);
     }
 
 
     private void PlayerRotation()
     {
-        if(isInnerGyro)
-            cam.Rotate(-Input.gyro.rotationRateUnbiased.x, -Input.gyro.rotationRateUnbiased.y, -Input.gyro.rotationRateUnbiased.z);
+        transform.rotation = Quaternion.Euler(ic.bodyRotAngle);
     }
 
 

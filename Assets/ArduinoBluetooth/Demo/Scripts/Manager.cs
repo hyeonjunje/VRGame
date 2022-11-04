@@ -5,6 +5,8 @@ using ArduinoBluetoothAPI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using System.Threading;
+using System.Threading.Tasks;
 
 public class Manager : MonoBehaviour {
 
@@ -23,21 +25,26 @@ public class Manager : MonoBehaviour {
 	Button Btn_Disconnect;
 
 	[SerializeField]
+	Button ActiveCanvas;
+
+	[SerializeField]
 	private InputController ic;
 
-	public Text Txt_Door;
-
 	public string received_message;
-	// 외부에서 접근하여 사용할 수 있습니다.
-	// 외부 다른 클래스에서 Manager 함수로 접근하여 Start 펑션에서 다음과 같이 사용하시면 됩니다.
-	//===============================================
-	// Manager.onDoorOpen.AddListener(OnDoorOpen);
-	// Manager.onDoorClose.AddListener(OnDoorClose);
-	//===============================================
-	public UnityEvent onDoorOpen, onDoorClose;
+	private Thread thread;
 
+	private void Start()
+	{
+		ActiveCanvas.onClick.AddListener(() =>
+		{
+			if (DebugHolder.activeSelf)
+				DebugHolder.SetActive(false);
+			else
+				DebugHolder.SetActive(true);
+		});
+	}
 
-	public void StartBluetoothCom()
+    public void StartBluetoothCom()
     {
 		Btn_Connect.onClick.AddListener(() => {
 			deviceName = "VRBT";
@@ -45,9 +52,13 @@ public class Manager : MonoBehaviour {
 			Debug.Log(bluetoothHelper);
 			bluetoothHelper.OnConnected += OnConnected;
 			bluetoothHelper.OnConnectionFailed += OnConnectionFailed;
-			bluetoothHelper.OnDataReceived += OnMessageReceived; //read the data
+
+			//bluetoothHelper.OnDataReceived += OnMessageReceived; //read the data
 
 			bluetoothHelper.setTerminatorBasedStream("\n");
+
+			thread = new Thread(DataReveive);
+			thread.Start();
 
 			if (bluetoothHelper.isDevicePaired())
 				Toggle_isDevicePaired.isOn = true;
@@ -79,36 +90,20 @@ public class Manager : MonoBehaviour {
 	}
 
 
-	void Update () {
-
-		if (Input.GetKeyUp (KeyCode.Alpha0)) {
-			if (DebugHolder.activeSelf)
-				DebugHolder.SetActive(false);
-			else
-				DebugHolder.SetActive(true);
+	private void DataReveive()
+    {
+		while (true)
+		{
+			ic.dataString = bluetoothHelper.Read();
+			Debug.Log(ic.dataString);
 		}
 	}
 
 
-	//Asynchronous method to receive messages
-	void OnMessageReceived () {
+/*	void OnMessageReceived () {
 		received_message = bluetoothHelper.Read ();
-		Debug.Log(received_message);
 		ic.dataString = received_message;
-
-
-		// ==================================  이런식으로 하면 될듯
-		/*if (received_message.Contains ("on")) {
-			Txt_Door.text = "Door is close";
-			onDoorClose.Invoke();
-		}
-
-		if (received_message.Contains ("off")) {
-			Txt_Door.text = "Door is open";
-			onDoorOpen.Invoke();
-		}*/
-		// ==================================  ==================================
-	}
+	}*/
 
 
 	void OnConnected () {
@@ -137,5 +132,7 @@ public class Manager : MonoBehaviour {
 	void OnApplicationQuit () {
 		if (bluetoothHelper != null)
 			bluetoothHelper.Disconnect ();
+
+		thread.Abort();
 	}
 }
