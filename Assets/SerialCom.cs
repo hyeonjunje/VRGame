@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO.Ports;
-using System.Threading;
-using System.Threading.Tasks;
-
+using Cysharp.Threading.Tasks;
 
 public class SerialCom : MonoBehaviour
 {
@@ -14,7 +12,6 @@ public class SerialCom : MonoBehaviour
 
     private bool startSerial = false;
 
-    private Thread thread;
 
     public void StartSerialCom()
     {
@@ -25,25 +22,47 @@ public class SerialCom : MonoBehaviour
 
         serialPort.Open();
 
-        thread = new Thread(DataReveive);
-        thread.Start();
+        //DataReceive();
+        DataReceive().Forget();
+        Debug.Log("=====================================================================");
     }
 
 
-    void DataReveive()
+    /*private async void DataReceive()
     {
-        int a = 0;
-        while(true)
+        await Task.Run(() =>
         {
-            ic.dataString = serialPort.ReadLine();
-            Debug.Log(ic.dataString);
-        }
+            Debug.Log((Thread.CurrentThread == mainThread));
+            for (int i = 0; i < 10000; i++)
+            {
+                ic.dataString = serialPort.ReadLine();
+                Debug.Log(ic.dataString);
+            }
+        });
+    }*/
+
+
+    private async UniTaskVoid DataReceive()
+    {
+        await UniTask.RunOnThreadPool(() =>
+        {
+            while(true)
+            {
+                ic.dataString = serialPort.ReadLine();
+                Debug.Log(ic.dataString);
+            }
+        });
     }
 
 
     private void OnApplicationQuit()
     {
-        thread.Abort();
         serialPort.Close();
+    }
+
+
+    public void WriteCom()
+    {
+        serialPort.Write("Calibration");
     }
 }

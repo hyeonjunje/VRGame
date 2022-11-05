@@ -28,8 +28,15 @@ public class InputController : MonoBehaviour
 
             if(_dataString.Contains("Fire"))
             {
-                ExtractData();
-                ProcessingInfo();
+                try
+                {
+                    ExtractData();
+                    ProcessingInfo();
+                }
+                catch(System.Exception e)
+                {
+                    Debug.Log(e);
+                }
             }
         }
     }
@@ -77,17 +84,24 @@ public class InputController : MonoBehaviour
     /// </summary>
     private void ExtractData()
     {
-        string[] data = dataString.Split(' ');
+        try
+        {
+            string[] data = dataString.Split(' ');
 
-        InputData[Horizontal] = float.Parse(data[0].Split(':')[1]);
-        InputData[Vertical] = float.Parse(data[1].Split(':')[1]);
-        InputData[Fire] = float.Parse(data[2].Split(':')[1]);
+            InputData[Horizontal] = float.Parse(data[0].Split(':')[1]);
+            InputData[Vertical] = float.Parse(data[1].Split(':')[1]);
+            InputData[Fire] = float.Parse(data[2].Split(':')[1]);
 
-        InputData[ControlerAngleX] = float.Parse(data[3].Split(':')[1]);
-        InputData[ControlerAngleY] = float.Parse(data[4].Split(':')[1]);
-        InputData[ControlerAngleZ] = float.Parse(data[5].Split(':')[1]);
+            InputData[ControlerAngleX] = float.Parse(data[3].Split(':')[1]);
+            InputData[ControlerAngleY] = float.Parse(data[4].Split(':')[1]);
+            InputData[ControlerAngleZ] = float.Parse(data[5].Split(':')[1]);
 
-        InputData[BodyAngleX] = float.Parse(data[6].Split(':')[1]);
+            InputData[BodyAngleX] = float.Parse(data[6].Split(':')[1]);
+        }
+        catch(System.Exception e)
+        {
+            Debug.Log(e);
+        }
 
         
 /*        foreach(string iter in data)

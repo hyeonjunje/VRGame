@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,6 +34,22 @@ public class GameManager : MonoBehaviour
             case EInputType.Bluetooth:
                 bluetoothCom.SetActive(true);
                 bluetoothCom.GetComponent<Manager>().StartBluetoothCom();  // 통신 시작 버튼 활성화
+                break;
+            default:
+                break;
+        }
+    }
+
+
+    public void Calibration()
+    {
+        switch (inputType)
+        {
+            case EInputType.Serial:
+                serialCom.GetComponent<SerialCom>().WriteCom();
+                break;
+            case EInputType.Bluetooth:
+                bluetoothCom.GetComponent<Manager>().WriteCom();  // 통신 시작 버튼 활성화
                 break;
             default:
                 break;
