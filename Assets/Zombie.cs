@@ -10,9 +10,16 @@ public class Zombie : LivingEntity
     [SerializeField] private float hitTime;
 
     [SerializeField] private BoxCollider rightBoxCol, leftBoxCol;
-    
+
+    [HideInInspector] public ZombieSpawner zombieSpawner;
+
+    public NavMeshAgent agent;
+
+    public bool isPatrol;
+    public PatrolRoutine patrolRoutine;
+    private Transform patrolDestination;
+
     private Animator animator;
-    private NavMeshAgent nav;
     private FieldOfView fov;
 
     private Transform target;
@@ -33,13 +40,17 @@ public class Zombie : LivingEntity
     private void Start()
     {
         animator = GetComponent<Animator>();
-
-        nav = GetComponent<NavMeshAgent>();
         fov = GetComponent<FieldOfView>();
 
         target = FindObjectOfType<Player>().transform;
-
         currentHp = hp;
+    }
+
+
+    public void MyReset()
+    {
+        currentHp = hp;
+        isPatrol = false;
     }
 
 
@@ -52,16 +63,45 @@ public class Zombie : LivingEntity
 
     private void Move()
     {
-        // 죽거나 공격중이거나 맞을때 이동 불가
-        if (fov.canSeePlayer && !isDead && !readyToAttack && !isHit)
+        if (agent.enabled == false)
+            return;
+
+        if (isPatrol)
+            Patrol();
+        else
         {
-            nav.SetDestination(target.position);
-            animator.SetBool(hashIsMove, true);
+            // 죽거나 공격중이거나 맞을때 이동 불가
+            if (fov.canSeePlayer && !isDead && !readyToAttack && !isHit)
+            {
+                agent.SetDestination(target.position);
+                animator.SetBool(hashIsMove, true);
+            }
+            else
+            {
+                agent.ResetPath();
+                animator.SetBool(hashIsMove, false);
+            }
+        }
+    }
+
+
+    private void Patrol()
+    {
+        if(fov.canSeePlayer)
+        {
+            isPatrol = false;
         }
         else
         {
-            nav.ResetPath();
-            animator.SetBool(hashIsMove, false);
+            isPatrol = true;
+
+            if (Vector3.Distance(transform.position, patrolRoutine.startPos.position) < 0.1f)
+                patrolDestination = patrolRoutine.endPos;
+            else if (Vector3.Distance(transform.position, patrolRoutine.endPos.position) < 0.1f)
+                patrolDestination = patrolRoutine.startPos;
+
+            agent.SetDestination(patrolDestination.position);
+            animator.SetBool(hashIsMove, true);
         }
     }
 

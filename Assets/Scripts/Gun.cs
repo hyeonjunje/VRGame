@@ -28,6 +28,8 @@ public class Gun : MonoBehaviour
     public void Shoot()
     {
         animator.SetTrigger(hashIsShoot);
+        if (Physics.Raycast(gunHole.position, gunHole.forward, out hit, 100f))
+            Debug.Log(hit.transform.name);
 
         if (Physics.Raycast(gunHole.position, gunHole.forward, out hit, 100f, 1 << LayerMask.NameToLayer("HitBox")))
         {
