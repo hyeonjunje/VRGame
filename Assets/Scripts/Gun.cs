@@ -6,18 +6,28 @@ public class Gun : MonoBehaviour
 {
     [SerializeField] private Transform gunHole;
     [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private Animator animator;
 
     private RaycastHit hit;
 
     private void Update()
     {
         lineRenderer.SetPosition(0, gunHole.position);
-        lineRenderer.SetPosition(1, gunHole.position + gunHole.forward * 100f);
+        if (Physics.Raycast(gunHole.position, gunHole.forward, out hit, 100f))
+        {
+            lineRenderer.SetPosition(1, hit.point);
+        }
+        else
+        {
+            lineRenderer.SetPosition(1, gunHole.position + gunHole.forward * 100f);
+        }
     }
 
 
     public void Shoot()
     {
+        animator.SetTrigger("isShoot");
+
         if (Physics.Raycast(gunHole.position, gunHole.forward, out hit, 100f, 1 << LayerMask.NameToLayer("HitBox")))
         {
             // 적의 히트박스에 총이 맞을경우

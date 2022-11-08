@@ -171,6 +171,11 @@ public class InputController : MonoBehaviour
             isFire = false;
 
         gunRotAngle += new Vector3(-Input.GetAxisRaw("Mouse Y"), Input.GetAxisRaw("Mouse X"), 0f);
+
+        if (Input.GetKey(KeyCode.E))
+            bodyRotAngle += new Vector3(0f, 1f, 0f);
+        else if(Input.GetKey(KeyCode.Q))
+            bodyRotAngle += new Vector3(0f, -1f, 0f);
     }
 
 
