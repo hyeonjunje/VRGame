@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Zombie : LivingEntity
 {
-    [SerializeField] private float moveSpeed;
     [SerializeField] private float attackableRange;
     [SerializeField] private float attackTime;
     [SerializeField] private float hitTime;
 
     [SerializeField] private BoxCollider rightBoxCol, leftBoxCol;
     
-    private Rigidbody myRigid;
     private Animator animator;
+    private NavMeshAgent nav;
+    private FieldOfView fov;
 
     private Transform target;
 
@@ -23,10 +24,18 @@ public class Zombie : LivingEntity
     private bool isHit = false;
     private Coroutine coHit;
 
+    private readonly int hashIsDeath = Animator.StringToHash("isDeath");
+    private readonly int hashIsAttack = Animator.StringToHash("isAttack");
+    private readonly int hashIsHitHead = Animator.StringToHash("isHitHead");
+    private readonly int hashIsHit = Animator.StringToHash("isHit");
+    private readonly int hashIsMove = Animator.StringToHash("isMove");
+
     private void Start()
     {
         animator = GetComponent<Animator>();
-        myRigid = GetComponent<Rigidbody>();
+
+        nav = GetComponent<NavMeshAgent>();
+        fov = GetComponent<FieldOfView>();
 
         target = FindObjectOfType<Player>().transform;
 
@@ -44,17 +53,16 @@ public class Zombie : LivingEntity
     private void Move()
     {
         // 죽거나 공격중이거나 맞을때 이동 불가
-        if (!isDead && !readyToAttack && !isHit)
+        if (fov.canSeePlayer && !isDead && !readyToAttack && !isHit)
         {
-            myRigid.velocity = (target.position - transform.position).normalized * moveSpeed;
-            animator.SetBool("isMove", true);
+            nav.SetDestination(target.position);
+            animator.SetBool(hashIsMove, true);
         }
         else
         {
-            myRigid.velocity = Vector3.zero;
-            animator.SetBool("isMove", false);
+            nav.ResetPath();
+            animator.SetBool(hashIsMove, false);
         }
-
     }
 
 
@@ -82,7 +90,7 @@ public class Zombie : LivingEntity
 
     IEnumerator CoAttack()
     {
-        animator.SetTrigger("isAttack");
+        animator.SetTrigger(hashIsAttack);
         yield return new WaitForSeconds(1f);
         rightBoxCol.enabled = true;
         leftBoxCol.enabled = true;
@@ -94,38 +102,42 @@ public class Zombie : LivingEntity
 
     public override void Hit()
     {
+        if (isDead)
+            return;
+
         currentHp--;
-        Debug.Log(currentHp);
 
         if (isDead)
             return;
 
         if (coHit != null)
             StopCoroutine(coHit);
-        coHit = StartCoroutine(CoHit("isHit"));
+        coHit = StartCoroutine(CoHit(hashIsHit));
     }
 
 
     public void HitHead()
     {
+        if (isDead)
+            return;
+
         currentHp -= 3;
-        Debug.Log(currentHp);
         if (isDead)
             return;
 
         if (coHit != null)
             StopCoroutine(coHit);
-        coHit = StartCoroutine(CoHit("isHitHead"));
+        coHit = StartCoroutine(CoHit(hashIsHitHead));
     }
 
 
     public override void Dead()
     {
-        animator.SetTrigger("isDeath");
+        animator.SetTrigger(hashIsDeath);
     }
 
 
-    IEnumerator CoHit(string hitType)
+    IEnumerator CoHit(int hitType)
     {
         isHit = true;
         animator.SetTrigger(hitType);

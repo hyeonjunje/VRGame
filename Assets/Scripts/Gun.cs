@@ -10,6 +10,7 @@ public class Gun : MonoBehaviour
 
     private RaycastHit hit;
 
+    private readonly int hashIsShoot = Animator.StringToHash("isShoot");
     private void Update()
     {
         lineRenderer.SetPosition(0, gunHole.position);
@@ -26,7 +27,7 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
-        animator.SetTrigger("isShoot");
+        animator.SetTrigger(hashIsShoot);
 
         if (Physics.Raycast(gunHole.position, gunHole.forward, out hit, 100f, 1 << LayerMask.NameToLayer("HitBox")))
         {

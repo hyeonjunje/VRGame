@@ -28,6 +28,8 @@ public class Player : LivingEntity
 
     private bool isInnerGyro = false;
 
+    private readonly int hashIsWaking = Animator.StringToHash("isWalking");
+
     private void Start()
     {
         character = GetComponent<CharacterController>();
@@ -76,7 +78,7 @@ public class Player : LivingEntity
         Vector3 moveDir = new Vector3(ic.moveDir.x * playerSpeed, -9.8f, ic.moveDir.z * playerSpeed);
         character.Move(transform.rotation * moveDir * Time.deltaTime);
 
-        animator.SetBool("isWalking", ic.moveDir != Vector3.zero);
+        animator.SetBool(hashIsWaking, ic.moveDir != Vector3.zero);
     }
 
 
