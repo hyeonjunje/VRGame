@@ -8,9 +8,22 @@ public class Gun : MonoBehaviour
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private Animator animator;
 
+    [SerializeField] private Light muzzleLight;
+    [SerializeField] private ParticleSystem muzzleFlash;
+
+    private AudioSource audioSource;
+
     private RaycastHit hit;
 
     private readonly int hashIsShoot = Animator.StringToHash("isShoot");
+
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
+
     private void Update()
     {
         lineRenderer.SetPosition(0, gunHole.position);
@@ -27,9 +40,13 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
+        audioSource.Play();
+
         animator.SetTrigger(hashIsShoot);
         if (Physics.Raycast(gunHole.position, gunHole.forward, out hit, 100f))
             Debug.Log(hit.transform.name);
+
+        StartCoroutine(CoMuzzleFlash());
 
         if (Physics.Raycast(gunHole.position, gunHole.forward, out hit, 100f, 1 << LayerMask.NameToLayer("HitBox")))
         {
@@ -49,5 +66,17 @@ public class Gun : MonoBehaviour
                 }
             }
         }
+    }
+
+
+    IEnumerator CoMuzzleFlash()
+    {
+        muzzleLight.enabled = true;
+        muzzleFlash.Play();
+
+        yield return new WaitForSeconds(0.1f);
+
+        muzzleLight.enabled = false;
+        muzzleFlash.Stop();
     }
 }

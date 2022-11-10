@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60590dd4ae342e84c8cde6c705cd9a44, type: 3}
+  m_Name: Zombie Sound Collection
+  m_EditorClassIdentifier: 
+  footstepSounds:
+  - {fileID: 8300000, guid: df874be086de9441a8ef805bd42d0fff, type: 3}
+  - {fileID: 8300000, guid: d47d075cb98ed4b869828da8dfd7ed52, type: 3}
+  - {fileID: 8300000, guid: 8af1d3f5222454aaabfae1a13ce78592, type: 3}
+  attackSounds:
+  - {fileID: 8300000, guid: 2628db55e50fe41cc9879051d359847a, type: 3}
+  - {fileID: 8300000, guid: 94e452828af664292a97c95ec9452126, type: 3}
+  - {fileID: 8300000, guid: 2c706f39dc7b645e0a17766d7757d4c5, type: 3}
+  hurtSounds:
+  - {fileID: 8300000, guid: 137bb003119aa47dfb5ed791d840d650, type: 3}
+  - {fileID: 8300000, guid: 0e84038961d6c4b72af49c11e1553b9e, type: 3}
+  - {fileID: 8300000, guid: 931523c039e8648f2ae2785389e68571, type: 3}
+  idleSound:
+  - {fileID: 8300000, guid: 90d342cf6f89440b9aa6c6ef4af6af88, type: 3}
+  - {fileID: 8300000, guid: 8c8b4012f639545b2a1f70a2082307b3, type: 3}
+  - {fileID: 8300000, guid: ad7b6eb3c723442b483e6b280fa02230, type: 3}

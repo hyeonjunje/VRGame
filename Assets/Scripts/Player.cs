@@ -11,6 +11,7 @@ public class Player : LivingEntity
     [SerializeField] private Transform gunLeftHandPos;
     [SerializeField] private Transform gunRightHandPos;
     [SerializeField] private Transform cam;
+    [SerializeField] private FootSoundPlayer footSoundPlayer;
 
     [Header("캐릭터 정보")]
     [SerializeField] private float playerSpeed;        // 캐릭터 속도
@@ -25,6 +26,7 @@ public class Player : LivingEntity
 
     private Animator animator;
     private CharacterController character;
+    private AudioSource audioSource;
 
     private bool isInnerGyro = false;
 
@@ -34,6 +36,7 @@ public class Player : LivingEntity
     {
         character = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         Input.gyro.enabled = true;  // 휴대폰 내장 자이로 센서 enabled
 
@@ -75,6 +78,11 @@ public class Player : LivingEntity
 
     private void MovePlayer()
     {
+        if (ic.moveDir != Vector3.zero)
+            footSoundPlayer.PlayFootStepSound();
+        else
+            footSoundPlayer.StopFootStepSound();
+
         Vector3 moveDir = new Vector3(ic.moveDir.x * playerSpeed, -9.8f, ic.moveDir.z * playerSpeed);
         character.Move(transform.rotation * moveDir * Time.deltaTime);
 

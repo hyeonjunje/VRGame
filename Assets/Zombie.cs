@@ -8,6 +8,7 @@ public class Zombie : LivingEntity
     [SerializeField] private float attackableRange;
     [SerializeField] private float attackTime;
     [SerializeField] private float hitTime;
+    [SerializeField] private float intervalIdleSound = 5f;
 
     [SerializeField] private BoxCollider rightBoxCol, leftBoxCol;
 
@@ -21,8 +22,12 @@ public class Zombie : LivingEntity
 
     private Animator animator;
     private FieldOfView fov;
+    private ZombieSoundPlayer zombieSoundPlayer;
 
     private Transform target;
+
+    private float idleTimer = 0f;
+    private float originIntervalIdleSound;
 
     private bool readyToAttack = false;   // 공격할 준비 (쿨타임마다 공격할 수 있게)
     private float attackTimer = 0f;
@@ -41,9 +46,12 @@ public class Zombie : LivingEntity
     {
         animator = GetComponent<Animator>();
         fov = GetComponent<FieldOfView>();
+        zombieSoundPlayer = GetComponent<ZombieSoundPlayer>();
 
         target = FindObjectOfType<Player>().transform;
         currentHp = hp;
+
+        originIntervalIdleSound = intervalIdleSound;
     }
 
 
@@ -56,8 +64,25 @@ public class Zombie : LivingEntity
 
     private void Update()
     {
+        if (isDead)
+            return;
+
         Move();
         TryAttack();
+        Idle();
+    }
+
+
+    private void Idle()
+    {
+        idleTimer += Time.deltaTime;
+        if(idleTimer >= intervalIdleSound)
+        {
+            intervalIdleSound += Random.Range(-0.2f, 0.2f);
+            intervalIdleSound = Mathf.Clamp(intervalIdleSound, originIntervalIdleSound - 1, originIntervalIdleSound + 1);
+            idleTimer = 0;
+            zombieSoundPlayer.PlayIdleSound();
+        }
     }
 
 
@@ -132,6 +157,9 @@ public class Zombie : LivingEntity
     {
         animator.SetTrigger(hashIsAttack);
         yield return new WaitForSeconds(1f);
+
+        zombieSoundPlayer.PlayAttackSound();
+
         rightBoxCol.enabled = true;
         leftBoxCol.enabled = true;
         yield return new WaitForSeconds(0.1f);
@@ -142,6 +170,8 @@ public class Zombie : LivingEntity
 
     public override void Hit()
     {
+        zombieSoundPlayer.PlayHurtSound();
+
         if (isDead)
             return;
 
@@ -158,6 +188,8 @@ public class Zombie : LivingEntity
 
     public void HitHead()
     {
+        zombieSoundPlayer.PlayHurtSound();
+
         if (isDead)
             return;
 
@@ -186,5 +218,4 @@ public class Zombie : LivingEntity
 
         isHit = false;
     }
-
 }
