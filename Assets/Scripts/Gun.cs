@@ -45,6 +45,7 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
+        // 오브젝트 상호작용
         if (currentTrigger != null)
         {
             if (!currentTrigger.isInteract)
@@ -55,7 +56,16 @@ public class Gun : MonoBehaviour
             return;
         }
 
+        // 총소리에 적 반응
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, audioSource.maxDistance, 1 << LayerMask.NameToLayer("Zombie"));
+        {
+            foreach (Collider collider in hitColliders)
+            {
+                collider.GetComponent<Zombie>().Search();
+            }
+        }
 
+        // 총쏘기 로직
         audioSource.Play();
 
         animator.SetTrigger(hashIsShoot);

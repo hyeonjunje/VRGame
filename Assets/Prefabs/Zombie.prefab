@@ -541,7 +541,8 @@ GameObject:
   - component: {fileID: 2437141888387840132}
   - component: {fileID: 7365995660544739315}
   - component: {fileID: 7836966700328438854}
-  m_Layer: 0
+  - component: {fileID: 4910360019406278641}
+  m_Layer: 16
   m_Name: Zombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,14 +600,13 @@ MonoBehaviour:
   attackTime: 2
   hitTime: 2
   intervalIdleSound: 5
+  searchTime: 2
+  IdleSpeed: 0.25
+  chaseSpeed: 1
   rightBoxCol: {fileID: 3371729251046539304}
   leftBoxCol: {fileID: 4382170011894249504}
   zombieSpawner: {fileID: 0}
   agent: {fileID: 2437141888387840132}
-  isPatrol: 0
-  patrolRoutine:
-    startPos: {fileID: 0}
-    endPos: {fileID: 0}
 --- !u!114 &2437141888387840133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -787,6 +787,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &4910360019406278641
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2437141888387840131}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &2523109504749411436
 GameObject:
   m_ObjectHideFlags: 0

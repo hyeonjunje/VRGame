@@ -10,14 +10,21 @@ public class Zombie : LivingEntity
     [SerializeField] private float hitTime;
     [SerializeField] private float intervalIdleSound = 5f;
 
+    [SerializeField] private float searchTime; // 탐색 시간
+
+    [SerializeField] private float IdleSpeed;
+    [SerializeField] private float chaseSpeed;
+
     [SerializeField] private BoxCollider rightBoxCol, leftBoxCol;
 
     [HideInInspector] public ZombieSpawner zombieSpawner;
 
     public NavMeshAgent agent;
 
-    public bool isPatrol;
-    public PatrolRoutine patrolRoutine;
+    private bool isPatrol;
+    private bool isPatrolZombie;
+
+    private PatrolRoutine patrolRoutine;
     private Transform patrolDestination;
 
     private Animator animator;
@@ -36,6 +43,8 @@ public class Zombie : LivingEntity
     private bool isHit = false;
     private Coroutine coHit;
 
+    private Coroutine coSearch;
+
     private readonly int hashIsDeath = Animator.StringToHash("isDeath");
     private readonly int hashIsAttack = Animator.StringToHash("isAttack");
     private readonly int hashIsHitHead = Animator.StringToHash("isHitHead");
@@ -52,6 +61,17 @@ public class Zombie : LivingEntity
         currentHp = hp;
 
         originIntervalIdleSound = intervalIdleSound;
+
+        agent.speed = IdleSpeed;
+    }
+
+
+    public void SetPatrolInfo(bool _isPatrolZombie, PatrolRoutine _patrolRoutine)
+    {
+        isPatrolZombie = _isPatrolZombie;
+        isPatrol = isPatrolZombie;
+
+        patrolRoutine = _patrolRoutine;
     }
 
 
@@ -59,6 +79,7 @@ public class Zombie : LivingEntity
     {
         currentHp = hp;
         isPatrol = false;
+        isPatrolZombie = false;
     }
 
 
@@ -91,13 +112,17 @@ public class Zombie : LivingEntity
         if (agent.enabled == false)
             return;
 
-        if (isPatrol)
+        if (isPatrolZombie && isPatrol)
             Patrol();
+
         else
         {
             // 죽거나 공격중이거나 맞을때 이동 불가
             if (fov.canSeePlayer && !isDead && !readyToAttack && !isHit)
             {
+                if (agent.speed == IdleSpeed)
+                    agent.speed = chaseSpeed;
+
                 agent.SetDestination(target.position);
                 animator.SetBool(hashIsMove, true);
             }
@@ -105,6 +130,9 @@ public class Zombie : LivingEntity
             {
                 agent.ResetPath();
                 animator.SetBool(hashIsMove, false);
+
+                if (isPatrolZombie)
+                    isPatrol = true;
             }
         }
     }
@@ -205,7 +233,10 @@ public class Zombie : LivingEntity
 
     public override void Dead()
     {
+        StopAllCoroutines();
         animator.SetTrigger(hashIsDeath);
+
+        agent.enabled = false;
     }
 
 
@@ -217,5 +248,52 @@ public class Zombie : LivingEntity
         yield return new WaitForSeconds(hitTime);
 
         isHit = false;
+
+        Search();
+    }
+
+
+    public void Search()
+    {
+        if (isDead)
+            return;
+
+        if (fov.canSeePlayer)
+            return;
+
+        if (coSearch != null)
+            StopCoroutine(coSearch);
+        coSearch = StartCoroutine(CoSearch());
+    }
+
+
+    public IEnumerator CoSearch()
+    {
+        float currentTime = 0;
+
+        while(true)
+        {
+            InfiniteLoopDetector.Run();
+
+            currentTime += Time.deltaTime;
+
+            if (currentTime >= searchTime)
+                currentTime = searchTime;
+
+            if (agent.speed != IdleSpeed)
+                agent.speed = IdleSpeed;
+
+            agent.SetDestination(target.position);
+            animator.SetBool(hashIsMove, true);
+            if (fov.canSeePlayer)
+                break;
+
+            if (currentTime == searchTime)
+            {
+                animator.SetBool(hashIsMove, false);
+                break;
+            }
+            yield return null;
+        }
     }
 }

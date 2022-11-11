@@ -102,8 +102,7 @@ public class ZombieSpawner : MonoBehaviour
     private void SpawnPatrolZombie(PatrolRoutine spawnPatrolPos)
     {
         Zombie zombie = GetObject();
-        zombie.isPatrol = true;
-        zombie.patrolRoutine = spawnPatrolPos;
+        zombie.SetPatrolInfo(true, spawnPatrolPos);
 
         zombie.agent.Warp(spawnPatrolPos.startPos.position);
 
