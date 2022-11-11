@@ -11,9 +11,12 @@ public class Gun : MonoBehaviour
     [SerializeField] private Light muzzleLight;
     [SerializeField] private ParticleSystem muzzleFlash;
 
+    [SerializeField] private float interactDistance = 5f;
+
     private AudioSource audioSource;
 
     private RaycastHit hit;
+    private TriggerObject currentTrigger = null;
 
     private readonly int hashIsShoot = Animator.StringToHash("isShoot");
 
@@ -35,11 +38,24 @@ public class Gun : MonoBehaviour
         {
             lineRenderer.SetPosition(1, gunHole.position + gunHole.forward * 100f);
         }
+
+        DetachTrigger();
     }
 
 
     public void Shoot()
     {
+        if (currentTrigger != null)
+        {
+            if (!currentTrigger.isInteract)
+                currentTrigger.Interact();
+            else
+                currentTrigger.ExitInteract();
+
+            return;
+        }
+
+
         audioSource.Play();
 
         animator.SetTrigger(hashIsShoot);
@@ -64,6 +80,28 @@ public class Gun : MonoBehaviour
                     hit.transform.root.GetComponent<Zombie>().Hit();
                     Debug.Log(hit.transform.root.GetComponent<Zombie>().name);
                 }
+            }
+        }
+    }
+
+
+    private void DetachTrigger()
+    {
+        if (Physics.Raycast(gunHole.position, gunHole.forward, out hit, interactDistance, 1 << LayerMask.NameToLayer("Trigger")))
+        {
+            if (currentTrigger == null)
+                currentTrigger = hit.transform.gameObject.GetComponent<TriggerObject>();
+
+            currentTrigger.TryInteract();
+        }
+        else
+        {
+            if (currentTrigger != null)
+            {
+                if(currentTrigger.isInteract)
+                    currentTrigger.ExitInteract();
+                currentTrigger.TryCancelInteract();
+                currentTrigger = null;
             }
         }
     }

@@ -9,7 +9,7 @@ using UnityEngine;
 /// </summary>
 public class InputController : MonoBehaviour
 {
-    private EInputType inputType => GameManager.instance.inputType;
+    private EInputType inputType => CommunicationManager.instance.inputType;
 
     // 원시데이터를 가공한 데이터
     public Vector3 gunRotAngle = Vector3.zero;   // 총의 회전각도 (mpu6050_1.getGyroAngle)

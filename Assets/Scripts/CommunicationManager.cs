@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 
-public class GameManager : MonoBehaviour
+public class CommunicationManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static CommunicationManager instance;
 
     private void Awake()
     {
