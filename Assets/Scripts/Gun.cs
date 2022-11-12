@@ -45,6 +45,9 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
+        GameManager.instance.ReStart();  // 게임 오버시 총을 쏘면 처음 씬 이동
+        GameManager.instance.StartGame();  // 게임 시작 준비완료시 총을 쏘면 게임 시작
+
         // 오브젝트 상호작용
         if (currentTrigger != null)
         {

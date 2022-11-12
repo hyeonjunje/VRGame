@@ -16,6 +16,7 @@ public class Player : LivingEntity
     [Header("캐릭터 정보")]
     [SerializeField] private float playerSpeed;        // 캐릭터 속도
     [SerializeField] private float gunRotSensitivity;  // 총 회전 민감도
+    [SerializeField] private float timeToDead;         // 죽을 때 쓰러지는 속도
 
     [Header("UI")]
     [SerializeField] private Button innerGyro;
@@ -68,6 +69,8 @@ public class Player : LivingEntity
 
     private void FixedUpdate()
     {
+        if (!GameManager.instance.isInGame)
+            return;
         AimGun();                    // 컨트롤러의 자이로 센서 (가속도 값)을 이용해 총 움직이게 하기
         GunRotation();               // 컨트롤러의 자이로 센서 (각속도 값)을 이용해 총 회전하게 하기
         PlayerHeadRotation();        // 휴대폰 내장 자이로 센서를 이용해 플레이어 머리 회전하게 하기
@@ -147,13 +150,41 @@ public class Player : LivingEntity
 
     public override void Hit()
     {
+        if (isDead)
+            return;
+
         Debug.Log("아야");
+        currentHp--;
     }
 
 
     public override void Dead()
     {
+        StartCoroutine(CoDead());
 
+        GameManager.instance.GameOver();
+    }
+
+
+    IEnumerator CoDead()
+    {
+        float currentTime = 0f;
+        Quaternion originRot = transform.rotation;
+        Vector3 eulerRot = new Vector3(-90f, originRot.eulerAngles.y, originRot.eulerAngles.z);
+        while (true)
+        {
+            currentTime += Time.deltaTime;
+
+            if (currentTime >= timeToDead)
+                currentTime = timeToDead;
+
+            transform.rotation = Quaternion.Lerp(originRot, Quaternion.Euler(eulerRot), currentTime / timeToDead);
+
+            if (currentTime == timeToDead)
+                break;
+
+            yield return null;
+        }
     }
 
 

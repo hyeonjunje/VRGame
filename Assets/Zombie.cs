@@ -237,6 +237,8 @@ public class Zombie : LivingEntity
         animator.SetTrigger(hashIsDeath);
 
         agent.enabled = false;
+
+        GameManager.instance.killCount++;
     }
 
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 [System.Serializable]
 public class PatrolRoutine
@@ -9,7 +10,6 @@ public class PatrolRoutine
     public Transform startPos;
     public Transform endPos;
 }
-
 
 
 public class ZombieSpawner : MonoBehaviour
@@ -29,22 +29,25 @@ public class ZombieSpawner : MonoBehaviour
         }
     }
 
-
     private void Start()
     {
-        NavMeshHit hit;
-        Debug.Log(NavMesh.SamplePosition(spawnPoses[0].position, out hit, 20f, NavMesh.AllAreas));
-        Debug.Log(hit.position);
+        GameManager.instance.gameStartEvent += SpawnZombie;
+    }
 
-            // 그냥 좀비 생성
+
+    private void SpawnZombie()
+    {
+        NavMeshHit hit;
+
+        // 그냥 좀비 생성
         for (int i = 0; i < spawnPoses.Count; i++)
         {
-            if(NavMesh.SamplePosition(spawnPoses[i].position, out hit, 5f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(spawnPoses[i].position, out hit, 5f, NavMesh.AllAreas))
                 SpawnZombie(hit.position);
         }
 
         // 순찰하는 좀비 생성
-        for(int i = 0; i < spawnPatrolPoses.Count; i++)
+        for (int i = 0; i < spawnPatrolPoses.Count; i++)
         {
             if (NavMesh.SamplePosition(spawnPatrolPoses[i].startPos.position, out hit, 5f, NavMesh.AllAreas))
                 spawnPatrolPoses[i].startPos.position = hit.position;
@@ -93,7 +96,7 @@ public class ZombieSpawner : MonoBehaviour
         Zombie zombie = GetObject();
 
         zombie.agent.Warp(pos);
-        zombie.transform.rotation = Quaternion.Euler(new Vector3(0f, Random.Range(0, 360), 0f));
+        zombie.transform.rotation = Quaternion.Euler(new Vector3(0f, UnityEngine.Random.Range(0, 360), 0f));
 
         zombie.agent.enabled = true;
     }
