@@ -31,7 +31,10 @@ public class Player : LivingEntity
 
     private bool isInnerGyro = false;
 
+    private bool isSetting = false;
+
     private readonly int hashIsWaking = Animator.StringToHash("isWalking");
+
 
     private void Start()
     {
@@ -45,6 +48,7 @@ public class Player : LivingEntity
 
         currentHp = hp;
     }
+
 
     private void SetGyro()
     {
@@ -61,6 +65,7 @@ public class Player : LivingEntity
         }
     }
 
+
     private void Update()
     {
         TryShoot();                  // 총 쏘기 시도
@@ -71,11 +76,13 @@ public class Player : LivingEntity
     {
         if (!GameManager.instance.isInGame)
             return;
-        AimGun();                    // 컨트롤러의 자이로 센서 (가속도 값)을 이용해 총 움직이게 하기
+
         GunRotation();               // 컨트롤러의 자이로 센서 (각속도 값)을 이용해 총 회전하게 하기
         PlayerHeadRotation();        // 휴대폰 내장 자이로 센서를 이용해 플레이어 머리 회전하게 하기
         PlayerRotation();            // 상체의 자이로 센서를 이용해 플레이어 회전
         MovePlayer();                // 조이스틱을 이용하여 플레이어 이동하게 하기
+
+        InitialGyro();               // 자이로센서의 값을 초기화
     }
 
 
@@ -95,8 +102,10 @@ public class Player : LivingEntity
 
     private void PlayerHeadRotation()
     {
-        if(isInnerGyro)
-            cam.Rotate(-Input.gyro.rotationRateUnbiased.x, -Input.gyro.rotationRateUnbiased.y, -Input.gyro.rotationRateUnbiased.z);
+        if (isInnerGyro)
+        {
+            cam.Rotate(new Vector3(-Input.gyro.rotationRateUnbiased.x, -Input.gyro.rotationRateUnbiased.y, -Input.gyro.rotationRateUnbiased.z));
+        }
     }
 
 
@@ -109,11 +118,6 @@ public class Player : LivingEntity
     private void GunRotation()
     {
         gunPivot.rotation = Quaternion.Euler(ic.gunRotAngle);
-    }
-
-
-    private void AimGun()
-    {
     }
 
 
@@ -132,6 +136,20 @@ public class Player : LivingEntity
     }
 
 
+    private void InitialGyro()
+    {
+        if (ic.trySetting && !isSetting)
+        {
+            ic.InitRotation();
+            isSetting = true;
+            
+            cam.rotation = Quaternion.Euler(Vector3.zero);
+        }
+        else if (!ic.trySetting)
+            isSetting = false;
+    }
+
+
     private void OnAnimatorIK(int layerIndex)
     {
         animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1.0f);
@@ -147,6 +165,7 @@ public class Player : LivingEntity
         animator.SetIKPosition(AvatarIKGoal.RightHand, gunRightHandPos.position);
         animator.SetIKRotation(AvatarIKGoal.RightHand, gunRightHandPos.rotation);
     }
+
 
     public override void Hit()
     {

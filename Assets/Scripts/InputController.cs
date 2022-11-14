@@ -16,6 +16,7 @@ public class InputController : MonoBehaviour
     public Vector3 bodyRotAngle = Vector3.zero;  // 몸의 회전각도 (mpu6050_2.getGyroAngle)
     public bool isFire;           // 총 격발 여부
     public Vector3 moveDir;       // 이동 방향
+    public bool trySetting;       // 각도 세팅(초기화)
 
     // 아두이노로부터 받을 원시 데이터
     private string _dataString = null;
@@ -49,13 +50,15 @@ public class InputController : MonoBehaviour
     // ----------------------------------- dictionary 의 키값 ----------------------------------------
     private const string Horizontal = "Horizontal";                     // 조이스틱 x축
     private const string Vertical = "Vertical";                         // 조이스틱 y축
-    private const string Fire = "Fire";                                 // 조이스틱 z축
+    private const string Setting = "Setting";                           // 조이스틱 z축
 
     private const string ControlerAngleX = "ControllerAngleX";           // 컨트롤러 자이로 회전값 x축
     private const string ControlerAngleY = "ControllerAngleY";           // 컨트롤러 자이로 회전값 y축
     private const string ControlerAngleZ = "ControllerAngleZ";           // 컨트롤러 자이로 회전값 z축
 
     private const string BodyAngleX = "BodyAngleX";                     // 상체 자이로 회전값 x축
+
+    private const string Fire = "Fire";                                 // 버튼 클릭
     // ----------------------------------- dictionary 의 키값 ----------------------------------------
 
 
@@ -66,13 +69,15 @@ public class InputController : MonoBehaviour
     {
         InputData[Horizontal] = 0f;
         InputData[Vertical] = 0f;
-        InputData[Fire] = 0f;
+        InputData[Setting] = 0f;
 
         InputData[ControlerAngleX] = 0f;
         InputData[ControlerAngleY] = 0f;
         InputData[ControlerAngleZ] = 0f;
 
         InputData[BodyAngleX] = 0f;
+
+        InputData[Fire] = 0f;
     }
 
     /// <summary>
@@ -88,27 +93,16 @@ public class InputController : MonoBehaviour
         {
             string[] data = dataString.Split(' ');
 
-            InputData[Horizontal] = float.Parse(data[0].Split(':')[1]);
-            InputData[Vertical] = float.Parse(data[1].Split(':')[1]);
-            InputData[Fire] = float.Parse(data[2].Split(':')[1]);
-
-            InputData[ControlerAngleX] = float.Parse(data[3].Split(':')[1]);
-            InputData[ControlerAngleY] = float.Parse(data[4].Split(':')[1]);
-            InputData[ControlerAngleZ] = float.Parse(data[5].Split(':')[1]);
-
-            InputData[BodyAngleX] = float.Parse(data[6].Split(':')[1]);
+            foreach(string iter in data)
+            {
+                string[] d = iter.Split(':');
+                InputData[d[0]] = float.Parse(d[1]);
+            }
         }
         catch(System.Exception e)
         {
             Debug.Log(e);
         }
-
-        
-/*        foreach(string iter in data)
-        {
-            string[] d = iter.Split(':');
-            InputData[d[0]] = float.Parse(d[1]);
-        }*/
     }
 
 
@@ -120,7 +114,7 @@ public class InputController : MonoBehaviour
         if (!InputData.ContainsKey(Fire))
             return;
 
-        isFire = InputData[Fire] == 0 ? true : false;
+        trySetting = InputData[Setting] == 0 ? true : false;
 
         float xMove = (InputData[Horizontal] - 518) / 518;
         float zMove = (InputData[Vertical] - 518) / 518;
@@ -130,6 +124,7 @@ public class InputController : MonoBehaviour
 
         moveDir = new Vector3(xMove, 0, zMove).normalized;
 
+        isFire = InputData[Fire] == 1 ? true : false;
 
         if (!isStartGunRotation)
         {

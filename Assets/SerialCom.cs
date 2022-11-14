@@ -49,7 +49,7 @@ public class SerialCom : MonoBehaviour
             while(true)
             {
                 ic.dataString = serialPort.ReadLine();
-                Debug.Log(ic.dataString);
+                //Debug.Log(ic.dataString);
             }
         });
     }

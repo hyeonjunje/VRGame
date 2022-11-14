@@ -10683,7 +10683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1842cffb9ff9268498fea60993e32839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputType: 1
+  _inputType: 0
   serialCom: {fileID: 1461249105}
   bluetoothCom: {fileID: 4016231856567924795}
 --- !u!4 &1044530870
@@ -18886,6 +18886,7 @@ MonoBehaviour:
   bodyRotAngle: {x: 0, y: 0, z: 0}
   isFire: 0
   moveDir: {x: 0, y: 0, z: 0}
+  trySetting: 0
 --- !u!143 &3212935505806120497
 CharacterController:
   m_ObjectHideFlags: 0
