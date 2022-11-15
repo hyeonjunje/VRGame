@@ -59,21 +59,23 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        if (isInGame)
-            return;
+        if(!isInGame && readyToStart)
+        {
+            readyToStart = false;
 
-        lobbyPanel.SetActive(false);
+            lobbyPanel.SetActive(false);
 
-        startTime = System.DateTime.Now;
-        isInGame = true;
+            startTime = System.DateTime.Now;
+            isInGame = true;
 
-        mainLight.intensity = 0f;
-        CutScenePlayer.StopCutScene();
+            mainLight.intensity = 0f;
+            CutScenePlayer.StopCutScene();
 
-        CameraSwither.SwitchCamera(playerViewCamera);
+            CameraSwither.SwitchCamera(playerViewCamera);
 
-        if (gameStartEvent != null)
-            gameStartEvent();
+            if (gameStartEvent != null)
+                gameStartEvent();
+        }
     }
 
 
