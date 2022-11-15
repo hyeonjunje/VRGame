@@ -605,6 +605,7 @@ MonoBehaviour:
   chaseSpeed: 1
   rightBoxCol: {fileID: 3371729251046539304}
   leftBoxCol: {fileID: 4382170011894249504}
+  zombieCapCol: {fileID: 8297875036447917058}
   zombieSpawner: {fileID: 0}
   agent: {fileID: 2437141888387840132}
 --- !u!114 &2437141888387840133
@@ -811,7 +812,7 @@ GameObject:
   - component: {fileID: 9061020993226164198}
   - component: {fileID: 2523109504749411443}
   - component: {fileID: 2523109504749411442}
-  - component: {fileID: 2692068215245556764}
+  - component: {fileID: 8297875036447917058}
   m_Layer: 8
   m_Name: mixamorig5:Hips
   m_TagString: Untagged
@@ -865,8 +866,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &2692068215245556764
-BoxCollider:
+--- !u!136 &8297875036447917058
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -875,8 +876,9 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 1.49, z: 0.5}
+  m_Radius: 0.32
+  m_Height: 1.72
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2564213860325268922
 GameObject:

@@ -109,7 +109,7 @@ NavMeshSettings:
     agentRadius: 0.5
     agentHeight: 2
     agentSlope: 50
-    agentClimb: 0.4
+    agentClimb: 0.5
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
@@ -130,9 +130,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 119706, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 144546, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
       propertyPath: m_Name
       value: My_Prop_ChurchBench_A (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 144546, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 433038, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
       propertyPath: m_RootOrder
@@ -192,9 +200,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 150026, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 190928, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
       propertyPath: m_Name
       value: Struct_Fence1_Mid_B (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 190928, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 469502, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
       propertyPath: m_RootOrder
@@ -5264,9 +5280,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 119706, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 144546, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
       propertyPath: m_Name
       value: My_Prop_ChurchBench_A (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 144546, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 433038, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
       propertyPath: m_RootOrder
@@ -5968,6 +5992,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Struct_Fence1_Gate_A_Door_DM (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6039525018234941645, guid: 23ecdd84027968244b2101ec7d4c1a5b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6039525018235170029, guid: 23ecdd84027968244b2101ec7d4c1a5b, type: 3}
       propertyPath: m_RootOrder
       value: 46
@@ -6128,6 +6156,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pavement2_End_A 5 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 122084, guid: 6e3189c8f251ccb4abb64f3d59c2256a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 475228, guid: 6e3189c8f251ccb4abb64f3d59c2256a, type: 3}
       propertyPath: m_RootOrder
       value: 30
@@ -6221,9 +6253,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 135856, guid: 5ef9b8247006c384f8209c0e0018d51e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 195380, guid: 5ef9b8247006c384f8209c0e0018d51e, type: 3}
       propertyPath: m_Name
       value: Struct_Fence1_Gate_A (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 195380, guid: 5ef9b8247006c384f8209c0e0018d51e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 459216, guid: 5ef9b8247006c384f8209c0e0018d51e, type: 3}
       propertyPath: m_RootOrder
@@ -6426,6 +6466,10 @@ PrefabInstance:
     - target: {fileID: 124836, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
       propertyPath: m_Name
       value: Struct_Fence1_Mid_A 11 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 124836, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 464194, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
       propertyPath: m_RootOrder
@@ -6769,6 +6813,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Struct_Fence1_Mid_A 14 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 124836, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 464194, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -6818,6 +6866,10 @@ PrefabInstance:
     - target: {fileID: 6606601694796174931, guid: a1ef571f011461e4b9e75338ef098787, type: 3}
       propertyPath: m_Name
       value: Struct_Pole_B_COL (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606601694796174931, guid: a1ef571f011461e4b9e75338ef098787, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6606601694796466803, guid: a1ef571f011461e4b9e75338ef098787, type: 3}
       propertyPath: m_RootOrder
@@ -6872,9 +6924,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 137398, guid: fe816015a58e629439b27ecca9cdb110, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 199228, guid: fe816015a58e629439b27ecca9cdb110, type: 3}
       propertyPath: m_Name
       value: My_Prop_ChurchBench_A_DM (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 199228, guid: fe816015a58e629439b27ecca9cdb110, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 485384, guid: fe816015a58e629439b27ecca9cdb110, type: 3}
       propertyPath: m_RootOrder
@@ -7091,9 +7151,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 137994, guid: b3c489c06c04c1d4d835d20adc6ab60a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 167176, guid: b3c489c06c04c1d4d835d20adc6ab60a, type: 3}
       propertyPath: m_Name
       value: Struct_FloodWall_A (68)
+      objectReference: {fileID: 0}
+    - target: {fileID: 167176, guid: b3c489c06c04c1d4d835d20adc6ab60a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 482554, guid: b3c489c06c04c1d4d835d20adc6ab60a, type: 3}
       propertyPath: m_RootOrder
@@ -7145,6 +7213,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pavement2_Mid_A 9 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 130748, guid: 688b081210a779845bda66a0015f75ab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 414648, guid: 688b081210a779845bda66a0015f75ab, type: 3}
       propertyPath: m_RootOrder
       value: 27
@@ -7194,6 +7266,10 @@ PrefabInstance:
     - target: {fileID: 122084, guid: 6e3189c8f251ccb4abb64f3d59c2256a, type: 3}
       propertyPath: m_Name
       value: Pavement2_End_A 7 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 122084, guid: 6e3189c8f251ccb4abb64f3d59c2256a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 475228, guid: 6e3189c8f251ccb4abb64f3d59c2256a, type: 3}
       propertyPath: m_RootOrder
@@ -7357,6 +7433,10 @@ PrefabInstance:
     - target: {fileID: 6606601694796174931, guid: a1ef571f011461e4b9e75338ef098787, type: 3}
       propertyPath: m_Name
       value: Struct_Pole_B_COL (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606601694796174931, guid: a1ef571f011461e4b9e75338ef098787, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6606601694796466803, guid: a1ef571f011461e4b9e75338ef098787, type: 3}
       propertyPath: m_RootOrder
@@ -7796,6 +7876,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Struct_Fence1_Mid_C (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 105288, guid: 953345a209e4fe7428046236259c9c7f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 133144, guid: 953345a209e4fe7428046236259c9c7f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 425724, guid: 953345a209e4fe7428046236259c9c7f, type: 3}
       propertyPath: m_RootOrder
       value: 18
@@ -7924,6 +8012,10 @@ PrefabInstance:
     - target: {fileID: 124836, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
       propertyPath: m_Name
       value: Struct_Fence1_Mid_A 8 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 124836, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 464194, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
       propertyPath: m_RootOrder
@@ -8056,6 +8148,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Struct_Fence1_Mid_C (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 105288, guid: 953345a209e4fe7428046236259c9c7f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 133144, guid: 953345a209e4fe7428046236259c9c7f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 425724, guid: 953345a209e4fe7428046236259c9c7f, type: 3}
       propertyPath: m_RootOrder
       value: 33
@@ -8176,6 +8276,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Struct_Fence1_Mid_C (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 105288, guid: 953345a209e4fe7428046236259c9c7f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 133144, guid: 953345a209e4fe7428046236259c9c7f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 425724, guid: 953345a209e4fe7428046236259c9c7f, type: 3}
       propertyPath: m_RootOrder
       value: 24
@@ -8286,6 +8394,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Struct_Pole_B_COL (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6606601694796174931, guid: a1ef571f011461e4b9e75338ef098787, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6606601694796466803, guid: a1ef571f011461e4b9e75338ef098787, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -8339,9 +8451,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 119706, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 144546, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
       propertyPath: m_Name
       value: My_Prop_ChurchBench_A (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 144546, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 433038, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
       propertyPath: m_RootOrder
@@ -8509,9 +8629,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 137994, guid: b3c489c06c04c1d4d835d20adc6ab60a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 167176, guid: b3c489c06c04c1d4d835d20adc6ab60a, type: 3}
       propertyPath: m_Name
       value: Struct_FloodWall_A (71)
+      objectReference: {fileID: 0}
+    - target: {fileID: 167176, guid: b3c489c06c04c1d4d835d20adc6ab60a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 482554, guid: b3c489c06c04c1d4d835d20adc6ab60a, type: 3}
       propertyPath: m_RootOrder
@@ -8609,6 +8737,10 @@ PrefabInstance:
     - target: {fileID: 122084, guid: 6e3189c8f251ccb4abb64f3d59c2256a, type: 3}
       propertyPath: m_Name
       value: Pavement2_End_A 6 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 122084, guid: 6e3189c8f251ccb4abb64f3d59c2256a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 475228, guid: 6e3189c8f251ccb4abb64f3d59c2256a, type: 3}
       propertyPath: m_RootOrder
@@ -8763,6 +8895,10 @@ PrefabInstance:
     - target: {fileID: 6606601694796174931, guid: a1ef571f011461e4b9e75338ef098787, type: 3}
       propertyPath: m_Name
       value: Struct_Pole_B_COL (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606601694796174931, guid: a1ef571f011461e4b9e75338ef098787, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6606601694796466803, guid: a1ef571f011461e4b9e75338ef098787, type: 3}
       propertyPath: m_RootOrder
@@ -9632,9 +9768,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 150026, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 190928, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
       propertyPath: m_Name
       value: Struct_Fence1_Mid_B (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 190928, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 469502, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
       propertyPath: m_RootOrder
@@ -9751,6 +9895,10 @@ PrefabInstance:
     - target: {fileID: 124836, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
       propertyPath: m_Name
       value: Struct_Fence1_Mid_A 15 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 124836, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 464194, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
       propertyPath: m_RootOrder
@@ -10193,6 +10341,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Struct_Fence1_Gate_A_Door_DM (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6039525018234941645, guid: 23ecdd84027968244b2101ec7d4c1a5b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6039525018235170029, guid: 23ecdd84027968244b2101ec7d4c1a5b, type: 3}
       propertyPath: m_RootOrder
       value: 45
@@ -10514,9 +10666,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 119706, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 144546, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
       propertyPath: m_Name
       value: My_Prop_ChurchBench_A (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 144546, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 433038, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
       propertyPath: m_RootOrder
@@ -10758,9 +10918,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 150026, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 190928, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
       propertyPath: m_Name
       value: Struct_Fence1_Mid_B (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 190928, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 469502, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
       propertyPath: m_RootOrder
@@ -10808,9 +10976,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 119706, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 144546, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
       propertyPath: m_Name
       value: My_Prop_ChurchBench_A (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 144546, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 433038, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
       propertyPath: m_RootOrder
@@ -10954,6 +11130,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Struct_Pole_B_COL (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6606601694796174931, guid: a1ef571f011461e4b9e75338ef098787, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6606601694796466803, guid: a1ef571f011461e4b9e75338ef098787, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -11054,6 +11234,10 @@ PrefabInstance:
     - target: {fileID: 154148, guid: 73a46d03e13dd2b4ebddaeb829191c7d, type: 3}
       propertyPath: m_Name
       value: Prop_Gravestone_E (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 154148, guid: 73a46d03e13dd2b4ebddaeb829191c7d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 426280, guid: 73a46d03e13dd2b4ebddaeb829191c7d, type: 3}
       propertyPath: m_RootOrder
@@ -11217,6 +11401,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Struct_Pole_B_COL (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 6606601694796174931, guid: a1ef571f011461e4b9e75338ef098787, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6606601694796466803, guid: a1ef571f011461e4b9e75338ef098787, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -11278,6 +11466,10 @@ PrefabInstance:
     - target: {fileID: 136794, guid: 513a0e1241d2a72459d1db2f9dc27f3e, type: 3}
       propertyPath: m_Name
       value: Prop_Gravestone_C 4 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 136794, guid: 513a0e1241d2a72459d1db2f9dc27f3e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 405124, guid: 513a0e1241d2a72459d1db2f9dc27f3e, type: 3}
       propertyPath: m_RootOrder
@@ -11461,6 +11653,14 @@ PrefabInstance:
     - target: {fileID: 105288, guid: 953345a209e4fe7428046236259c9c7f, type: 3}
       propertyPath: m_Name
       value: Struct_Fence1_Mid_C (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 105288, guid: 953345a209e4fe7428046236259c9c7f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 133144, guid: 953345a209e4fe7428046236259c9c7f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 425724, guid: 953345a209e4fe7428046236259c9c7f, type: 3}
       propertyPath: m_RootOrder
@@ -12356,6 +12556,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Struct_Pole_B_COL (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 6606601694796174931, guid: a1ef571f011461e4b9e75338ef098787, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6606601694796466803, guid: a1ef571f011461e4b9e75338ef098787, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -12414,9 +12618,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 150026, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 190928, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
       propertyPath: m_Name
       value: Struct_Fence1_Mid_B (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 190928, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 469502, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
       propertyPath: m_RootOrder
@@ -12663,9 +12875,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 182654, guid: 4b8bfd825ef8db444b6bb8add0914c2c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 195520, guid: 4b8bfd825ef8db444b6bb8add0914c2c, type: 3}
       propertyPath: m_Name
       value: Struct_Fence1_Gate_B (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 195520, guid: 4b8bfd825ef8db444b6bb8add0914c2c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 482562, guid: 4b8bfd825ef8db444b6bb8add0914c2c, type: 3}
       propertyPath: m_RootOrder
@@ -12725,6 +12945,10 @@ PrefabInstance:
     - target: {fileID: 122084, guid: 6e3189c8f251ccb4abb64f3d59c2256a, type: 3}
       propertyPath: m_Name
       value: Pavement2_End_A 4 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 122084, guid: 6e3189c8f251ccb4abb64f3d59c2256a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 475228, guid: 6e3189c8f251ccb4abb64f3d59c2256a, type: 3}
       propertyPath: m_RootOrder
@@ -13047,9 +13271,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 119706, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 144546, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
       propertyPath: m_Name
       value: My_Prop_ChurchBench_A (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 144546, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 433038, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
       propertyPath: m_RootOrder
@@ -13188,9 +13420,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 137994, guid: b3c489c06c04c1d4d835d20adc6ab60a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 167176, guid: b3c489c06c04c1d4d835d20adc6ab60a, type: 3}
       propertyPath: m_Name
       value: Struct_FloodWall_A (69)
+      objectReference: {fileID: 0}
+    - target: {fileID: 167176, guid: b3c489c06c04c1d4d835d20adc6ab60a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 482554, guid: b3c489c06c04c1d4d835d20adc6ab60a, type: 3}
       propertyPath: m_RootOrder
@@ -13238,9 +13478,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 150026, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 190928, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
       propertyPath: m_Name
       value: Struct_Fence1_Mid_B (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 190928, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 469502, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
       propertyPath: m_RootOrder
@@ -13322,9 +13570,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 150026, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 190928, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
       propertyPath: m_Name
       value: Struct_Fence1_Mid_B (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 190928, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 469502, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
       propertyPath: m_RootOrder
@@ -13379,6 +13635,10 @@ PrefabInstance:
     - target: {fileID: 130748, guid: 688b081210a779845bda66a0015f75ab, type: 3}
       propertyPath: m_Name
       value: Pavement2_Mid_A 8 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 130748, guid: 688b081210a779845bda66a0015f75ab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 414648, guid: 688b081210a779845bda66a0015f75ab, type: 3}
       propertyPath: m_RootOrder
@@ -13742,9 +14002,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 182654, guid: 4b8bfd825ef8db444b6bb8add0914c2c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 195520, guid: 4b8bfd825ef8db444b6bb8add0914c2c, type: 3}
       propertyPath: m_Name
       value: Struct_Fence1_Gate_B (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 195520, guid: 4b8bfd825ef8db444b6bb8add0914c2c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 482562, guid: 4b8bfd825ef8db444b6bb8add0914c2c, type: 3}
       propertyPath: m_RootOrder
@@ -13868,9 +14136,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 137398, guid: fe816015a58e629439b27ecca9cdb110, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 199228, guid: fe816015a58e629439b27ecca9cdb110, type: 3}
       propertyPath: m_Name
       value: My_Prop_ChurchBench_A_DM
+      objectReference: {fileID: 0}
+    - target: {fileID: 199228, guid: fe816015a58e629439b27ecca9cdb110, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 485384, guid: fe816015a58e629439b27ecca9cdb110, type: 3}
       propertyPath: m_RootOrder
@@ -13933,6 +14209,14 @@ PrefabInstance:
     - target: {fileID: 105288, guid: 953345a209e4fe7428046236259c9c7f, type: 3}
       propertyPath: m_Name
       value: Struct_Fence1_Mid_C (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 105288, guid: 953345a209e4fe7428046236259c9c7f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 133144, guid: 953345a209e4fe7428046236259c9c7f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 425724, guid: 953345a209e4fe7428046236259c9c7f, type: 3}
       propertyPath: m_RootOrder
@@ -14058,9 +14342,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 175182, guid: a43ff2cb77998f24c911c94091c664ba, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 194530, guid: a43ff2cb77998f24c911c94091c664ba, type: 3}
       propertyPath: m_Name
       value: Prop_ParkBench_A (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 194530, guid: a43ff2cb77998f24c911c94091c664ba, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 413904, guid: a43ff2cb77998f24c911c94091c664ba, type: 3}
       propertyPath: m_RootOrder
@@ -14112,6 +14404,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Struct_Fence1_Mid_A 12 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 124836, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 464194, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -14158,9 +14454,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 150026, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 190928, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
       propertyPath: m_Name
       value: Struct_Fence1_Mid_B (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 190928, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 469502, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
       propertyPath: m_RootOrder
@@ -14293,6 +14597,10 @@ PrefabInstance:
     - target: {fileID: 124262, guid: 9141863ac11ac0e4d8288c88f8d38bc0, type: 3}
       propertyPath: m_Name
       value: Villa1_Deco_IntDivider_A (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 124262, guid: 9141863ac11ac0e4d8288c88f8d38bc0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 431582, guid: 9141863ac11ac0e4d8288c88f8d38bc0, type: 3}
       propertyPath: m_RootOrder
@@ -14656,9 +14964,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 119706, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 144546, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
       propertyPath: m_Name
       value: My_Prop_ChurchBench_A (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 144546, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 433038, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
       propertyPath: m_RootOrder
@@ -14938,6 +15254,10 @@ PrefabInstance:
     - target: {fileID: 199854, guid: 74e94f0416ca474418749ee6c97439b2, type: 3}
       propertyPath: m_Name
       value: Struct_Fence1_Column_A 3 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 199854, guid: 74e94f0416ca474418749ee6c97439b2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 454322, guid: 74e94f0416ca474418749ee6c97439b2, type: 3}
       propertyPath: m_RootOrder
@@ -15623,9 +15943,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 134520, guid: 7610c55f0edab724fb21b5ca2833d7e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 136830, guid: 7610c55f0edab724fb21b5ca2833d7e3, type: 3}
       propertyPath: m_Name
       value: Struct_Billboard_B (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 136830, guid: 7610c55f0edab724fb21b5ca2833d7e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 443546, guid: 7610c55f0edab724fb21b5ca2833d7e3, type: 3}
       propertyPath: m_RootOrder
@@ -15673,9 +16001,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 119706, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 144546, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
       propertyPath: m_Name
       value: My_Prop_ChurchBench_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 144546, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 433038, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
       propertyPath: m_RootOrder
@@ -15738,6 +16074,10 @@ PrefabInstance:
     - target: {fileID: 124836, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
       propertyPath: m_Name
       value: Struct_Fence1_Mid_A 10 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 124836, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 464194, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
       propertyPath: m_RootOrder
@@ -16039,6 +16379,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Struct_Fence1_Mid_A 6 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 124836, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 464194, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -16085,9 +16429,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 137994, guid: b3c489c06c04c1d4d835d20adc6ab60a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 167176, guid: b3c489c06c04c1d4d835d20adc6ab60a, type: 3}
       propertyPath: m_Name
       value: Struct_FloodWall_A (70)
+      objectReference: {fileID: 0}
+    - target: {fileID: 167176, guid: b3c489c06c04c1d4d835d20adc6ab60a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 482554, guid: b3c489c06c04c1d4d835d20adc6ab60a, type: 3}
       propertyPath: m_RootOrder
@@ -16139,9 +16491,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 150026, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 190928, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
       propertyPath: m_Name
       value: Struct_Fence1_Mid_B (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 190928, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 469502, guid: 04c36f15bbecd854cab50deedb5c594f, type: 3}
       propertyPath: m_RootOrder
@@ -16196,6 +16556,10 @@ PrefabInstance:
     - target: {fileID: 124836, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
       propertyPath: m_Name
       value: Struct_Fence1_Mid_A 7 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 124836, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 464194, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
       propertyPath: m_RootOrder
@@ -16400,6 +16764,10 @@ PrefabInstance:
     - target: {fileID: 124836, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
       propertyPath: m_Name
       value: Struct_Fence1_Mid_A 5 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 124836, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 464194, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
       propertyPath: m_RootOrder
@@ -16695,6 +17063,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Struct_Fence1_Gate_A_Door_DM (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6039525018234941645, guid: 23ecdd84027968244b2101ec7d4c1a5b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6039525018235170029, guid: 23ecdd84027968244b2101ec7d4c1a5b, type: 3}
       propertyPath: m_RootOrder
       value: 43
@@ -16886,6 +17258,10 @@ PrefabInstance:
     - target: {fileID: 124836, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
       propertyPath: m_Name
       value: Struct_Fence1_Mid_A 13 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 124836, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 464194, guid: b4bb1f5d4e31a07409ece01b4cf53b22, type: 3}
       propertyPath: m_RootOrder
@@ -17081,6 +17457,14 @@ PrefabInstance:
     - target: {fileID: 105288, guid: 953345a209e4fe7428046236259c9c7f, type: 3}
       propertyPath: m_Name
       value: Struct_Fence1_Mid_C (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 105288, guid: 953345a209e4fe7428046236259c9c7f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 133144, guid: 953345a209e4fe7428046236259c9c7f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 425724, guid: 953345a209e4fe7428046236259c9c7f, type: 3}
       propertyPath: m_RootOrder
@@ -17489,9 +17873,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1961917982}
     m_Modifications:
+    - target: {fileID: 119706, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 144546, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
       propertyPath: m_Name
       value: My_Prop_ChurchBench_A (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 144546, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 433038, guid: 51e1ec27a31e16a4ba99622c680fd8ec, type: 3}
       propertyPath: m_RootOrder
@@ -18595,6 +18987,7 @@ MonoBehaviour:
   playerSpeed: 5
   gunRotSensitivity: 1
   timeToDead: 2
+  invincibleTime: 0.1
   innerGyro: {fileID: 90219572}
   innerGyroText: {fileID: 313609482}
 --- !u!114 &3212935505806120496
@@ -18813,6 +19206,10 @@ PrefabInstance:
     - target: {fileID: 6039525018234941645, guid: 23ecdd84027968244b2101ec7d4c1a5b, type: 3}
       propertyPath: m_Name
       value: Struct_Fence1_Gate_A_Door_DM
+      objectReference: {fileID: 0}
+    - target: {fileID: 6039525018234941645, guid: 23ecdd84027968244b2101ec7d4c1a5b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6039525018235170029, guid: 23ecdd84027968244b2101ec7d4c1a5b, type: 3}
       propertyPath: m_RootOrder
@@ -20786,9 +21183,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8228569812693806653, guid: eeab8368e28c5634a880922def6de29b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 8228569812693826377, guid: eeab8368e28c5634a880922def6de29b, type: 3}
       propertyPath: m_Name
       value: Prop_Car1_DM
+      objectReference: {fileID: 0}
+    - target: {fileID: 8228569812693826377, guid: eeab8368e28c5634a880922def6de29b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eeab8368e28c5634a880922def6de29b, type: 3}

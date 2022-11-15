@@ -17,6 +17,8 @@ public class Player : LivingEntity
     [SerializeField] private float playerSpeed;        // 캐릭터 속도
     [SerializeField] private float gunRotSensitivity;  // 총 회전 민감도
     [SerializeField] private float timeToDead;         // 죽을 때 쓰러지는 속도
+    [SerializeField] private float invincibleTime;     // 무적 시간
+
 
     [Header("UI")]
     [SerializeField] private Button innerGyro;
@@ -32,6 +34,8 @@ public class Player : LivingEntity
     private bool isInnerGyro = false;
 
     private bool isSetting = false;
+
+    private bool isInvincible = false;
 
     private readonly int hashIsWaking = Animator.StringToHash("isWalking");
 
@@ -211,7 +215,18 @@ public class Player : LivingEntity
     {
         if(other.tag == "Hands")
         {
-            Hit();
+            if(!isInvincible)
+            {
+                Hit();
+                StartCoroutine(CoHit());
+            }
         }
+    }
+
+    IEnumerator CoHit()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(invincibleTime);
+        isInvincible = false;
     }
 }

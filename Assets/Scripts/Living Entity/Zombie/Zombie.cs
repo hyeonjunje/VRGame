@@ -16,6 +16,8 @@ public class Zombie : LivingEntity
     [SerializeField] private float chaseSpeed;
 
     [SerializeField] private BoxCollider rightBoxCol, leftBoxCol;
+    [SerializeField] private CapsuleCollider zombieCapCol;
+
 
     [HideInInspector] public ZombieSpawner zombieSpawner;
 
@@ -236,6 +238,7 @@ public class Zombie : LivingEntity
         StopAllCoroutines();
         animator.SetTrigger(hashIsDeath);
 
+        zombieCapCol.enabled = false;
         agent.enabled = false;
 
         GameManager.instance.killCount++;
