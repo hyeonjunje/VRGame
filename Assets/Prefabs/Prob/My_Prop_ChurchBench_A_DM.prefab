@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &182654
+--- !u!1 &137398
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 475712}
-  - component: {fileID: 3357570}
-  - component: {fileID: 2375214}
-  - component: {fileID: 6410146}
-  m_Layer: 0
-  m_Name: Struct_Fence1_Gate_B_LOD2
+  - component: {fileID: 432142}
+  - component: {fileID: 3336706}
+  - component: {fileID: 2318018}
+  - component: {fileID: 6567756}
+  m_Layer: 8
+  m_Name: lo_Prop_ChurchBench_A_DM_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 16
   m_IsActive: 1
---- !u!4 &475712
+--- !u!4 &432142
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 182654}
+  m_GameObject: {fileID: 137398}
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 482562}
+  m_Father: {fileID: 485384}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3357570
+--- !u!33 &3336706
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 182654}
-  m_Mesh: {fileID: 4300004, guid: 44e1fa61100e81943b5459bacbc07b12, type: 3}
---- !u!23 &2375214
+  m_GameObject: {fileID: 137398}
+  m_Mesh: {fileID: 4300002, guid: cf186547dc2647147bc8703966249057, type: 3}
+--- !u!23 &2318018
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 182654}
+  m_GameObject: {fileID: 137398}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 059f40424b9d4674ebaed350bd5e0c2f, type: 2}
+  - {fileID: 2100000, guid: 9107b4df6f0b8d44092ad6117a1db3d4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82,21 +82,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6410146
-MeshCollider:
+--- !u!65 &6567756
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 182654}
+  m_GameObject: {fileID: 137398}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: ea265c625487e4c4b8cd87df549d2ec4, type: 3}
---- !u!1 &195520
+  serializedVersion: 2
+  m_Size: {x: 3.2151685, y: 1.3106979, z: 1.7350836}
+  m_Center: {x: -1.1576471, y: 0.644651, z: -0.46478733}
+--- !u!1 &199228
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,40 +103,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 482562}
-  - component: {fileID: 20504316}
-  m_Layer: 0
-  m_Name: Struct_Fence1_Gate_B
+  - component: {fileID: 485384}
+  - component: {fileID: 20529292}
+  m_Layer: 8
+  m_Name: My_Prop_ChurchBench_A_DM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 16
   m_IsActive: 1
---- !u!4 &482562
+--- !u!4 &485384
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 195520}
+  m_GameObject: {fileID: 199228}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 503.6185, y: 16.604473, z: 404.96}
+  m_LocalPosition: {x: 650.0514, y: 17.499998, z: 487.57693}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 475712}
+  - {fileID: 432142}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!205 &20504316
+--- !u!205 &20529292
 LODGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 195520}
+  m_GameObject: {fileID: 199228}
   serializedVersion: 2
-  m_LocalReferencePoint: {x: -3.6571755, y: 2.8972502, z: 0.0056702495}
-  m_Size: 14.6757765
+  m_LocalReferencePoint: {x: -1.1576471, y: 0.64465094, z: -0.4647873}
+  m_Size: 3.2151766
   m_FadeMode: 0
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
@@ -145,13 +144,9 @@ LODGroup:
   - screenRelativeHeight: 0.25
     fadeTransitionWidth: 0
     renderers:
-    - renderer: {fileID: 2375214}
-  - screenRelativeHeight: 0.125
+    - renderer: {fileID: 2318018}
+  - screenRelativeHeight: 0.0151569275
     fadeTransitionWidth: 0
     renderers:
-    - renderer: {fileID: 2375214}
-  - screenRelativeHeight: 0.01
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 2375214}
+    - renderer: {fileID: 2318018}
   m_Enabled: 1
