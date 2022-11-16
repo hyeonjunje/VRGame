@@ -13,18 +13,11 @@ public class GameManager : MonoBehaviour
     {
         if (instance == null)
             instance = this;
-
-        CameraSwither.Register(playerViewCamera);
-        CutScenePlayer.SetPlayableDirector(playableDirector);
-
-        CutScenePlayer.PlayCutScene();
     }
 
-    [SerializeField] private CinemachineVirtualCamera playerViewCamera;
-    [SerializeField] private PlayableDirector playableDirector;
-    [SerializeField] private Light mainLight;
+    //[SerializeField] private Light mainLight;
 
-    [Header("UI")]
+    /*[Header("UI")]
     [SerializeField] private GameObject gameEndPanel;
     [SerializeField] private Text GameInfoText;
     [SerializeField] private Text clearTimeText;
@@ -32,7 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject reStartText;
 
     [SerializeField] private GameObject lobbyPanel;
-    [SerializeField] private GameObject startText;
+    [SerializeField] private GameObject startText;*/
 
     public delegate void GameStartEvent();
     public GameStartEvent gameStartEvent = null;
@@ -52,12 +45,12 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        lobbyPanel.SetActive(true);
-        StartCoroutine(CoReadyToStart());
+        //lobbyPanel.SetActive(true);
+        //StartCoroutine(CoReadyToStart());
     }
 
 
-    public void StartGame()
+/*    public void StartGame()
     {
         if(!isInGame && readyToStart)
         {
@@ -69,9 +62,6 @@ public class GameManager : MonoBehaviour
             isInGame = true;
 
             mainLight.intensity = 0f;
-            CutScenePlayer.StopCutScene();
-
-            CameraSwither.SwitchCamera(playerViewCamera);
 
             if (gameStartEvent != null)
                 gameStartEvent();
@@ -137,5 +127,5 @@ public class GameManager : MonoBehaviour
         readyToStart = true;
 
         startText.SetActive(true);
-    }
+    }*/
 }

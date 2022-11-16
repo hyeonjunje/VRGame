@@ -20,9 +20,9 @@ public class Player : LivingEntity
     [SerializeField] private float invincibleTime;     // 무적 시간
 
 
-    [Header("UI")]
+/*    [Header("UI")]
     [SerializeField] private Button innerGyro;
-    [SerializeField] private Text innerGyroText;
+    [SerializeField] private Text innerGyroText;*/
 
     private Gun gun => gunPivot.GetComponent<Gun>();
     private bool isShoot = false;
@@ -46,15 +46,15 @@ public class Player : LivingEntity
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
 
-        Input.gyro.enabled = true;  // 휴대폰 내장 자이로 센서 enabled
+        //Input.gyro.enabled = true;  // 휴대폰 내장 자이로 센서 enabled
 
-        innerGyro.onClick.AddListener(() => SetGyro());
+        //innerGyro.onClick.AddListener(() => SetGyro());
 
         currentHp = hp;
     }
 
 
-    private void SetGyro()
+/*    private void SetGyro()
     {
         // 켜져있을때 누르면 꺼짐
         if(isInnerGyro)  
@@ -67,7 +67,7 @@ public class Player : LivingEntity
             innerGyroText.text = "On";
             isInnerGyro = true;
         }
-    }
+    }*/
 
 
     private void Update()
@@ -78,8 +78,8 @@ public class Player : LivingEntity
 
     private void FixedUpdate()
     {
-        if (!GameManager.instance.isInGame)
-            return;
+/*        if (!GameManager.instance.isInGame)
+            return;*/
 
         GunRotation();               // 컨트롤러의 자이로 센서 (각속도 값)을 이용해 총 회전하게 하기
         PlayerHeadRotation();        // 휴대폰 내장 자이로 센서를 이용해 플레이어 머리 회전하게 하기
@@ -185,7 +185,7 @@ public class Player : LivingEntity
     {
         StartCoroutine(CoDead());
 
-        GameManager.instance.GameOver();
+        //GameManager.instance.GameOver();
     }
 
 

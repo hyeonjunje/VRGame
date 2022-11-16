@@ -33,7 +33,7 @@ public class CommunicationManager : MonoBehaviour
                 break;
             case EInputType.Bluetooth:
                 bluetoothCom.SetActive(true);
-                bluetoothCom.GetComponent<Manager>().StartBluetoothCom();  // 통신 시작 버튼 활성화
+                bluetoothCom.GetComponent<BluetoothCom>().StartBluetoothCom();  // 통신 시작 버튼 활성화
                 break;
             default:
                 break;
