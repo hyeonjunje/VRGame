@@ -29,13 +29,8 @@ public class ZombieSpawner : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        GameManager.instance.gameStartEvent += SpawnZombie;
-    }
 
-
-    private void SpawnZombie()
+    public void SpawnZombie()
     {
         NavMeshHit hit;
 

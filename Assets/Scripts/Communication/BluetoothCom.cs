@@ -19,40 +19,55 @@ public class BluetoothCom : MonoBehaviour
 	Toggle Toggle_isConnected;
 	[SerializeField]
 	GameObject DebugHolder;
-	[SerializeField]
-	Button Btn_Connect;
-	[SerializeField]
-	Button Btn_Disconnect;
-
-	[SerializeField]
-	Button ActiveCanvas;
 
 	[SerializeField]
 	private InputController ic;
 
 	public string received_message;
 
-	private void Start()
-	{
-		ActiveCanvas.onClick.AddListener(() =>
-		{
-			if (DebugHolder.activeSelf)
-				DebugHolder.SetActive(false);
-			else
-				DebugHolder.SetActive(true);
-		});
-	}
 
 	public void StartBluetoothCom()
 	{
-		Btn_Connect.onClick.AddListener(() => {
+		deviceName = "VRBT";
+		bluetoothHelper = BluetoothHelper.GetInstance(deviceName);
+		Debug.Log(bluetoothHelper);
+		bluetoothHelper.OnConnected += OnConnected;
+		bluetoothHelper.OnConnectionFailed += OnConnectionFailed;
+
+		bluetoothHelper.setTerminatorBasedStream("\n");
+
+
+		if (bluetoothHelper.isDevicePaired())
+			Toggle_isDevicePaired.isOn = true;
+		else
+			Toggle_isDevicePaired.isOn = false;
+
+		if (bluetoothHelper.ScanNearbyDevices())
+		{
+			Debug.Log("근처 블루투스 있음");
+
+		}
+		else
+			Debug.Log("없음");
+
+		if (bluetoothHelper.isDevicePaired())
+		{
+			Debug.Log("try to connect");
+			bluetoothHelper.Connect(); // tries to connect
+		}
+		else
+		{
+			Debug.Log("not DevicePaired");
+		}
+
+
+		/*Btn_Connect.onClick.AddListener(() => {
 			deviceName = "VRBT";
 			bluetoothHelper = BluetoothHelper.GetInstance(deviceName);
 			Debug.Log(bluetoothHelper);
 			bluetoothHelper.OnConnected += OnConnected;
 			bluetoothHelper.OnConnectionFailed += OnConnectionFailed;
 
-			//bluetoothHelper.OnDataReceived += OnMessageReceived; //read the data
 			DataReceive().Forget();
 
 
@@ -85,7 +100,7 @@ public class BluetoothCom : MonoBehaviour
 		Btn_Disconnect.onClick.AddListener(() => {
 			bluetoothHelper.Disconnect();
 			Debug.Log("try to Disconnect");
-		});
+		});*/
 	}
 
 	private async UniTaskVoid DataReceive()
@@ -130,6 +145,9 @@ public class BluetoothCom : MonoBehaviour
 		{
 			bluetoothHelper.StartListening();
 			Debug.Log("Connected");
+			DataReceive().Forget();
+			CommunicationManager.isConnected = true;
+			SceneManagerEx.instance.CurrentScene.StartGame();
 		}
 		catch (Exception ex)
 		{

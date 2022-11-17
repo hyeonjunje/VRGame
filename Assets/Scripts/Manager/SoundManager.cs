@@ -9,18 +9,8 @@ public class SoundManager : MonoBehaviour
     
     private void Start()
     {
-        GameManager.instance.gameStartEvent += StartGame;
+
     }
-
-
-    private void StartGame()
-    {
-        foreach (AudioSource audioSource in inGameSound)
-            audioSource.enabled = true;
-
-        lobbySound.enabled = false;
-    }
-
 
 /*    private void EndGame()
     {

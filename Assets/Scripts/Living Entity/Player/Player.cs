@@ -10,7 +10,7 @@ public class Player : LivingEntity
     [SerializeField] private Transform gunPivot;
     [SerializeField] private Transform gunLeftHandPos;
     [SerializeField] private Transform gunRightHandPos;
-    [SerializeField] private Transform cam;
+    [SerializeField] private Transform playerView;       // 캐릭터 시야
     [SerializeField] private FootSoundPlayer footSoundPlayer;
 
     [Header("캐릭터 정보")]
@@ -19,23 +19,22 @@ public class Player : LivingEntity
     [SerializeField] private float timeToDead;         // 죽을 때 쓰러지는 속도
     [SerializeField] private float invincibleTime;     // 무적 시간
 
+    public Transform pv { get { return playerView; } }
 
-    [Header("UI")]
-    [SerializeField] private Button innerGyro;
-    [SerializeField] private Text innerGyroText;
 
     private Gun gun => gunPivot.GetComponent<Gun>();
     private bool isShoot = false;
 
     private Animator animator;
     private CharacterController character;
-    private AudioSource audioSource;
 
     private bool isInnerGyro = false;
 
     private bool isSetting = false;
 
     private bool isInvincible = false;
+
+    private bool isWarp = false;
 
     private readonly int hashIsWaking = Animator.StringToHash("isWalking");
 
@@ -44,29 +43,15 @@ public class Player : LivingEntity
     {
         character = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
 
         Input.gyro.enabled = true;  // 휴대폰 내장 자이로 센서 enabled
+#if UNITY_EDITOR
+        isInnerGyro = false;
+#else
+        isInnerGyro = true;
+#endif
 
-        innerGyro.onClick.AddListener(() => SetGyro());
-
-        currentHp = hp;
-    }
-
-
-    private void SetGyro()
-    {
-        // 켜져있을때 누르면 꺼짐
-        if(isInnerGyro)  
-        {
-            innerGyroText.text = "Off";
-            isInnerGyro = false;
-        }
-        else
-        {
-            innerGyroText.text = "On";
-            isInnerGyro = true;
-        }
+        init();  // 체력초기화
     }
 
 
@@ -78,20 +63,26 @@ public class Player : LivingEntity
 
     private void FixedUpdate()
     {
-        if (!GameManager.instance.isInGame)
-            return;
+        if (!isDead)
+        {
+            GunRotation();               // 컨트롤러의 자이로 센서 (각속도 값)을 이용해 총 회전하게 하기
+            PlayerRotation();            // 상체의 자이로 센서를 이용해 플레이어 회전
+            MovePlayer();                // 조이스틱을 이용하여 플레이어 이동하게 하기
+        }
 
-        GunRotation();               // 컨트롤러의 자이로 센서 (각속도 값)을 이용해 총 회전하게 하기
         PlayerHeadRotation();        // 휴대폰 내장 자이로 센서를 이용해 플레이어 머리 회전하게 하기
-        PlayerRotation();            // 상체의 자이로 센서를 이용해 플레이어 회전
-        MovePlayer();                // 조이스틱을 이용하여 플레이어 이동하게 하기
-
         InitialGyro();               // 자이로센서의 값을 초기화
     }
 
 
     private void MovePlayer()
     {
+        if(isWarp)
+        {
+            isWarp = false;
+            return;
+        }
+
         if (ic.moveDir != Vector3.zero)
             footSoundPlayer.PlayFootStepSound();
         else
@@ -99,7 +90,6 @@ public class Player : LivingEntity
 
         Vector3 moveDir = new Vector3(ic.moveDir.x * playerSpeed, -9.8f, ic.moveDir.z * playerSpeed);
         character.Move(transform.rotation * moveDir * Time.deltaTime);
-
         animator.SetBool(hashIsWaking, ic.moveDir != Vector3.zero);
     }
 
@@ -108,7 +98,7 @@ public class Player : LivingEntity
     {
         if (isInnerGyro)
         {
-            cam.Rotate(new Vector3(-Input.gyro.rotationRateUnbiased.x, -Input.gyro.rotationRateUnbiased.y, -Input.gyro.rotationRateUnbiased.z));
+            playerView.Rotate(new Vector3(-Input.gyro.rotationRateUnbiased.x, -Input.gyro.rotationRateUnbiased.y, -Input.gyro.rotationRateUnbiased.z));
         }
     }
 
@@ -131,6 +121,7 @@ public class Player : LivingEntity
         {
             if (!isShoot)
             {
+                EventManager.RunShootEvent();
                 gun.Shoot();
                 isShoot = true;
             }
@@ -147,10 +138,17 @@ public class Player : LivingEntity
             ic.InitRotation();
             isSetting = true;
             
-            cam.rotation = Quaternion.Euler(Vector3.zero);
+            playerView.rotation = Quaternion.Euler(Vector3.zero);
         }
         else if (!ic.trySetting)
             isSetting = false;
+    }
+
+
+    public void Warp(Vector3 pos, Quaternion qut)
+    {
+        transform.SetPositionAndRotation(pos, qut);
+        isWarp = true;
     }
 
 
@@ -183,6 +181,7 @@ public class Player : LivingEntity
 
     public override void Dead()
     {
+        Debug.Log("주거써");
         StartCoroutine(CoDead());
 
         GameManager.instance.GameOver();

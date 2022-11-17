@@ -8,20 +8,19 @@ using TMPro;
 public class TriggerObject : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI interactionText;
-    [SerializeField] private bool isOneTime;   // 일회성 trigger인지 구별하는 변수
 
     [SerializeField] private UnityEvent interactEvent, exitInteractEvent;
-
+    
     public bool isInteract = false;
     public void TryInteract()
     {
-        interactionText.gameObject.SetActive(true);
+        interactionText?.gameObject.SetActive(true);
     }
 
 
     public void TryCancelInteract()
     {
-        interactionText.gameObject.SetActive(false);
+        interactionText?.gameObject.SetActive(false);
     }
 
 
@@ -36,5 +35,11 @@ public class TriggerObject : MonoBehaviour
     {
         exitInteractEvent.Invoke();
         isInteract = false;
+    }
+
+
+    public void LoadScene(string sceneName)
+    {
+        SceneManagerEx.instance.LoadScene(sceneName);
     }
 }

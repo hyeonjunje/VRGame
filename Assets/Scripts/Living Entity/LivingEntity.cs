@@ -13,6 +13,7 @@ public abstract class LivingEntity : MonoBehaviour
         {
             _currentHp = value;
 
+
             if (_currentHp <= 0)
                 Dead();
         }
@@ -24,4 +25,10 @@ public abstract class LivingEntity : MonoBehaviour
 
 
     public abstract void Dead();
+
+
+    public void init()
+    {
+        currentHp = hp;
+    }
 }

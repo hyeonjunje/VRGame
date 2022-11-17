@@ -13,16 +13,7 @@ public class GameManager : MonoBehaviour
     {
         if (instance == null)
             instance = this;
-
-        CameraSwither.Register(playerViewCamera);
-        CutScenePlayer.SetPlayableDirector(playableDirector);
-
-        CutScenePlayer.PlayCutScene();
     }
-
-    [SerializeField] private CinemachineVirtualCamera playerViewCamera;
-    [SerializeField] private PlayableDirector playableDirector;
-    [SerializeField] private Light mainLight;
 
     [Header("UI")]
     [SerializeField] private GameObject gameEndPanel;
@@ -31,83 +22,46 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text killCountText;
     [SerializeField] private GameObject reStartText;
 
-    [SerializeField] private GameObject lobbyPanel;
-    [SerializeField] private GameObject startText;
-
-    public delegate void GameStartEvent();
-    public GameStartEvent gameStartEvent = null;
-
-    public delegate void GameEndEvent();
-    public GameEndEvent gameEndEvent = null;
-
-    private bool readyToReStart = false;
-    private bool readyToStart = false;
-
-    public int killCount = 0;
-
-    public bool isInGame = false;
-
+    private int killCount = 0;
     private System.DateTime startTime;
 
+    private bool readyToRestart = false;
 
     private void Start()
     {
-        lobbyPanel.SetActive(true);
-        StartCoroutine(CoReadyToStart());
+        EventManager.enemyDieEvent += EnemyDie;
+        EventManager.shootEvent += Restart;
     }
 
 
     public void StartGame()
     {
-        if(!isInGame && readyToStart)
-        {
-            readyToStart = false;
-
-            lobbyPanel.SetActive(false);
-
-            startTime = System.DateTime.Now;
-            isInGame = true;
-
-            mainLight.intensity = 0f;
-            CutScenePlayer.StopCutScene();
-
-            CameraSwither.SwitchCamera(playerViewCamera);
-
-            if (gameStartEvent != null)
-                gameStartEvent();
-        }
+        killCount = 0;
+        startTime = System.DateTime.Now;
     }
 
 
-    public void ClearGame()
+    private void EnemyDie()
     {
-        isInGame = false;
+        killCount++;
+    }
 
-        if (gameEndEvent != null)
-            gameEndEvent.Invoke();
 
-        gameEndPanel.SetActive(true);
-        GameInfoText.text = "Game Clear";
-        GameInfoText.color = Color.yellow;
-
-        clearTimeText.text = "클리어 시간 : " + (System.DateTime.Now - startTime).TotalSeconds;
-        killCountText.text = "좀비를 죽인 횟수 : " + killCount;
-
-        StartCoroutine(CoReadyToReStart());
+    private void Restart()
+    {
+        if(readyToRestart)
+        {
+            readyToRestart = false;
+            SceneManagerEx.instance.LoadScene("Lobby");
+        }
     }
 
 
     public void GameOver()
     {
-        isInGame = false;
-
-        if (gameEndEvent != null)
-            gameEndEvent.Invoke();
-
         gameEndPanel.SetActive(true);
         GameInfoText.text = "Game Over";
         GameInfoText.color = Color.red;
-
         clearTimeText.text = "클리어 시간 : " + (System.DateTime.Now - startTime).TotalSeconds;
         killCountText.text = "좀비를 죽인 횟수 : " + killCount;
 
@@ -115,27 +69,26 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void ReStart()
+    public void GameClear()
     {
-        if(readyToReStart)
-            SceneManager.LoadScene(0);
+        gameEndPanel.SetActive(true);
+        GameInfoText.text = "Game Clear";
+        GameInfoText.color = Color.yellow;
+        clearTimeText.text = "클리어 시간 : " + (System.DateTime.Now - startTime).TotalSeconds;
+        killCountText.text = "좀비를 죽인 횟수 : " + killCount;
+
+        StartCoroutine(CoReadyToReStart());
     }
 
 
     IEnumerator CoReadyToReStart()
     {
-        yield return new WaitForSeconds(3f);
-        readyToReStart = true;
+        reStartText.SetActive(false);
+        readyToRestart = false;
 
+        yield return new WaitForSeconds(2f);
+
+        readyToRestart = true;
         reStartText.SetActive(true);
-    }
-
-
-    IEnumerator CoReadyToStart()
-    {
-        yield return new WaitForSeconds(3f);
-        readyToStart = true;
-
-        startText.SetActive(true);
     }
 }
