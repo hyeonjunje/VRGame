@@ -31,8 +31,8 @@ public class GameScene : BaseScene
         // 인게임 시작 설정
         gameManager.StartGame();
 
-        canvas.SetParent(SceneManagerEx.instance.player.transform);
-        canvas.localPosition = new Vector3(0, 1.539f, 1.192993f);
+        canvas.SetParent(SceneManagerEx.instance.player.pv);
+        canvas.localPosition = new Vector3(0, 0, 1f);
         canvas.localScale = Vector3.one * 0.00106916f;
     }
 

@@ -596,7 +596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 3
-  attackableRange: 1
+  attackableRange: 1.7
   attackTime: 2
   hitTime: 2
   intervalIdleSound: 5
@@ -1174,7 +1174,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.3, z: 0.3}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!54 &3371729251046539311
 Rigidbody:
@@ -1487,7 +1487,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.3, z: 0.3}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!54 &4382170011894249511
 Rigidbody:
