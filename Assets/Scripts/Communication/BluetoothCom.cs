@@ -145,8 +145,9 @@ public class BluetoothCom : MonoBehaviour
 		{
 			bluetoothHelper.StartListening();
 			Debug.Log("Connected");
-
 			DataReceive().Forget();
+			CommunicationManager.isConnected = true;
+			SceneManagerEx.instance.CurrentScene.StartGame();
 		}
 		catch (Exception ex)
 		{

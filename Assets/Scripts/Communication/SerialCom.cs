@@ -10,9 +10,6 @@ public class SerialCom : MonoBehaviour
 
     SerialPort serialPort = new SerialPort("COM4", 9600);
 
-    private bool startSerial = false;
-
-
     public void StartSerialCom()
     {
         // 이미 켜져있다면 return
@@ -22,9 +19,13 @@ public class SerialCom : MonoBehaviour
 
         serialPort.Open();
 
+        CommunicationManager.isConnected = true;
+
         //DataReceive();
         DataReceive().Forget();
         Debug.Log("=====================================================================");
+
+        SceneManagerEx.instance.CurrentScene.StartGame();
     }
 
 

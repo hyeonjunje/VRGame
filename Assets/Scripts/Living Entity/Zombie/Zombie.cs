@@ -60,7 +60,8 @@ public class Zombie : LivingEntity
         zombieSoundPlayer = GetComponent<ZombieSoundPlayer>();
 
         target = FindObjectOfType<Player>().transform;
-        currentHp = hp;
+
+        init();
 
         originIntervalIdleSound = intervalIdleSound;
 
@@ -241,7 +242,7 @@ public class Zombie : LivingEntity
         zombieCapCol.enabled = false;
         agent.enabled = false;
 
-        GameManager.instance.killCount++;
+        EventManager.RunEnemyDiesEvent();   // 죽으면 이벤트 실행 killcount++
     }
 
 

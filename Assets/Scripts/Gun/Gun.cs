@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Gun : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class Gun : MonoBehaviour
 
     private RaycastHit hit;
     private TriggerObject currentTrigger = null;
+    private GameObject potalChild = null;
 
     private readonly int hashIsShoot = Animator.StringToHash("isShoot");
 
@@ -45,9 +47,6 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
-        //GameManager.instance.ReStart();  // 게임 오버시 총을 쏘면 처음 씬 이동
-        //GameManager.instance.StartGame();  // 게임 시작 준비완료시 총을 쏘면 게임 시작
-
         // 오브젝트 상호작용
         if (currentTrigger != null)
         {
@@ -100,12 +99,21 @@ public class Gun : MonoBehaviour
 
     private void DetachTrigger()
     {
+        // 트리거 감지
         if (Physics.Raycast(gunHole.position, gunHole.forward, out hit, interactDistance, 1 << LayerMask.NameToLayer("Trigger")))
         {
             if (currentTrigger == null)
                 currentTrigger = hit.transform.gameObject.GetComponent<TriggerObject>();
 
             currentTrigger.TryInteract();
+        }
+        else if(Physics.Raycast(gunHole.position, gunHole.forward, out hit, 20, 1 << LayerMask.NameToLayer("UI")))
+        {
+            if(hit.transform.tag == "Potal")
+            {
+                potalChild = hit.transform.GetChild(0).gameObject;
+                potalChild.SetActive(true);
+            }
         }
         else
         {
@@ -115,6 +123,11 @@ public class Gun : MonoBehaviour
                     currentTrigger.ExitInteract();
                 currentTrigger.TryCancelInteract();
                 currentTrigger = null;
+            }
+            if(potalChild != null)
+            {
+                potalChild.SetActive(false);
+                potalChild = null;
             }
         }
     }

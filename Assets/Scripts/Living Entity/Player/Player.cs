@@ -20,22 +20,19 @@ public class Player : LivingEntity
     [SerializeField] private float invincibleTime;     // 무적 시간
 
 
-/*    [Header("UI")]
-    [SerializeField] private Button innerGyro;
-    [SerializeField] private Text innerGyroText;*/
-
     private Gun gun => gunPivot.GetComponent<Gun>();
     private bool isShoot = false;
 
     private Animator animator;
     private CharacterController character;
-    private AudioSource audioSource;
 
     private bool isInnerGyro = false;
 
     private bool isSetting = false;
 
     private bool isInvincible = false;
+
+    private bool isWarp = false;
 
     private readonly int hashIsWaking = Animator.StringToHash("isWalking");
 
@@ -44,30 +41,12 @@ public class Player : LivingEntity
     {
         character = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
 
-        //Input.gyro.enabled = true;  // 휴대폰 내장 자이로 센서 enabled
+        Input.gyro.enabled = true;  // 휴대폰 내장 자이로 센서 enabled
+        isInnerGyro = true;
 
-        //innerGyro.onClick.AddListener(() => SetGyro());
-
-        currentHp = hp;
+        init();  // 체력초기화
     }
-
-
-/*    private void SetGyro()
-    {
-        // 켜져있을때 누르면 꺼짐
-        if(isInnerGyro)  
-        {
-            innerGyroText.text = "Off";
-            isInnerGyro = false;
-        }
-        else
-        {
-            innerGyroText.text = "On";
-            isInnerGyro = true;
-        }
-    }*/
 
 
     private void Update()
@@ -78,8 +57,8 @@ public class Player : LivingEntity
 
     private void FixedUpdate()
     {
-/*        if (!GameManager.instance.isInGame)
-            return;*/
+        if (isDead)
+            return;
 
         GunRotation();               // 컨트롤러의 자이로 센서 (각속도 값)을 이용해 총 회전하게 하기
         PlayerHeadRotation();        // 휴대폰 내장 자이로 센서를 이용해 플레이어 머리 회전하게 하기
@@ -92,6 +71,12 @@ public class Player : LivingEntity
 
     private void MovePlayer()
     {
+        if(isWarp)
+        {
+            isWarp = false;
+            return;
+        }
+
         if (ic.moveDir != Vector3.zero)
             footSoundPlayer.PlayFootStepSound();
         else
@@ -99,7 +84,6 @@ public class Player : LivingEntity
 
         Vector3 moveDir = new Vector3(ic.moveDir.x * playerSpeed, -9.8f, ic.moveDir.z * playerSpeed);
         character.Move(transform.rotation * moveDir * Time.deltaTime);
-
         animator.SetBool(hashIsWaking, ic.moveDir != Vector3.zero);
     }
 
@@ -131,6 +115,7 @@ public class Player : LivingEntity
         {
             if (!isShoot)
             {
+                EventManager.RunShootEvent();
                 gun.Shoot();
                 isShoot = true;
             }
@@ -151,6 +136,13 @@ public class Player : LivingEntity
         }
         else if (!ic.trySetting)
             isSetting = false;
+    }
+
+
+    public void Warp(Vector3 pos, Quaternion qut)
+    {
+        transform.SetPositionAndRotation(pos, qut);
+        isWarp = true;
     }
 
 
@@ -183,9 +175,10 @@ public class Player : LivingEntity
 
     public override void Dead()
     {
+        Debug.Log("주거써");
         StartCoroutine(CoDead());
 
-        //GameManager.instance.GameOver();
+        GameManager.instance.GameOver();
     }
 
 

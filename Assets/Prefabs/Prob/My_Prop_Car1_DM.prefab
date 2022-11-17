@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8228569812694935283}
   - component: {fileID: 8228569812696001515}
   - component: {fileID: 8228569812699743509}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: lo_Prop_Car1_DM_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8228569812693566869}
   - component: {fileID: 8228569812677520667}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: My_Prop_Car1_DM
   m_TagString: Untagged
   m_Icon: {fileID: 0}

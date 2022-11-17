@@ -6,6 +6,7 @@ using Cysharp.Threading.Tasks;
 public class CommunicationManager : MonoBehaviour
 {
     public static CommunicationManager instance;
+    public static bool isConnected = false;
 
     private void Awake()
     {
@@ -21,21 +22,20 @@ public class CommunicationManager : MonoBehaviour
     [SerializeField] private GameObject serialCom;
     [SerializeField] private GameObject bluetoothCom;
 
-    private void Start()
+    public void StartCom()
     {
-        serialCom.SetActive(false);
-        bluetoothCom.SetActive(false);
         switch (inputType)
         {
             case EInputType.Serial:
-                serialCom.SetActive(true);
                 serialCom.GetComponent<SerialCom>().StartSerialCom();  // 통신시작
+                isConnected = true;
                 break;
             case EInputType.Bluetooth:
-                bluetoothCom.SetActive(true);
                 bluetoothCom.GetComponent<BluetoothCom>().StartBluetoothCom();  // 통신 시작 버튼 활성화
                 break;
             default:
+                SceneManagerEx.instance.CurrentScene.StartGame();
+                isConnected = true;
                 break;
         }
     }
