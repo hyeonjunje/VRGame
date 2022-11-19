@@ -20,6 +20,8 @@ public class Gun : MonoBehaviour
     private TriggerObject currentTrigger = null;
     private GameObject potalChild = null;
 
+    private string currentHitName;
+
     private readonly int hashIsShoot = Animator.StringToHash("isShoot");
 
 
@@ -102,33 +104,44 @@ public class Gun : MonoBehaviour
         // 트리거 감지
         if (Physics.Raycast(gunHole.position, gunHole.forward, out hit, interactDistance, 1 << LayerMask.NameToLayer("Trigger")))
         {
-            if (currentTrigger == null)
+            if(currentHitName != hit.transform.name)
+            {
+                if(currentTrigger != null)
+                {
+                    currentTrigger.ExitInteract();
+                    currentTrigger.TryCancelInteract();
+                }
+                currentHitName = hit.transform.name;
                 currentTrigger = hit.transform.gameObject.GetComponent<TriggerObject>();
-
+            }
             currentTrigger.TryInteract();
         }
-        else if(Physics.Raycast(gunHole.position, gunHole.forward, out hit, 20, 1 << LayerMask.NameToLayer("UI")))
+        else if(Physics.Raycast(gunHole.position, gunHole.forward, out hit, 100, 1 << LayerMask.NameToLayer("Trigger")))
         {
-            if(hit.transform.tag == "Potal")
+            if(hit.transform.tag == "UI")
             {
-                potalChild = hit.transform.GetChild(0).gameObject;
-                potalChild.SetActive(true);
+                if (currentHitName != hit.transform.name)
+                {
+                    if (currentTrigger != null)
+                    {
+                        currentTrigger.ExitInteract();
+                        currentTrigger.TryCancelInteract();
+                    }
+                    currentHitName = hit.transform.name;
+                    currentTrigger = hit.transform.gameObject.GetComponent<TriggerObject>();
+                }
+                currentTrigger.TryInteract();
             }
         }
         else
         {
             if (currentTrigger != null)
             {
-                if(currentTrigger.isInteract)
-                    currentTrigger.ExitInteract();
+                currentTrigger.ExitInteract();
                 currentTrigger.TryCancelInteract();
-                currentTrigger = null;
             }
-            if(potalChild != null)
-            {
-                potalChild.SetActive(false);
-                potalChild = null;
-            }
+            currentTrigger = null;
+            currentHitName = null;
         }
     }
 

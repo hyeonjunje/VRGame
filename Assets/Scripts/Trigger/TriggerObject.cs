@@ -26,6 +26,9 @@ public class TriggerObject : MonoBehaviour
 
     public void Interact()
     {
+        if (isInteract)
+            return;
+
         interactEvent.Invoke();
         isInteract = true;
     }
@@ -33,6 +36,9 @@ public class TriggerObject : MonoBehaviour
 
     public void ExitInteract()
     {
+        if (!isInteract)
+            return;
+
         exitInteractEvent.Invoke();
         isInteract = false;
     }

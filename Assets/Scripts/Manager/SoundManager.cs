@@ -4,17 +4,36 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    [SerializeField] private List<AudioSource> inGameSound;
-    [SerializeField] private AudioSource lobbySound;
+    public static SoundManager instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+
+        else if (instance != this)
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private AudioSource audioSource;
     
     private void Start()
     {
-
+        audioSource = GetComponent<AudioSource>();
     }
 
-/*    private void EndGame()
+
+    public void PlayBGM(AudioClip clip)
     {
-        foreach (AudioSource audioSource in inGameSound)
-            audioSource.enabled = false;
-    }*/
+        audioSource.clip = clip;
+        audioSource.Play();
+    }
+
+
+    public void StopBGM()
+    {
+
+    }
 }

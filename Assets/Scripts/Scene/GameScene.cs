@@ -11,7 +11,7 @@ public class GameScene : BaseScene
     
     public override void Clear()
     {
-        canvas.parent = null;
+        Destroy(canvas.gameObject);
     }
 
     public override void StartGame()

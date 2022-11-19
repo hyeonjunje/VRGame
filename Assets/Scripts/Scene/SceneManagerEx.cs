@@ -64,14 +64,6 @@ public class SceneManagerEx : MonoBehaviour
         isLoad = false;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            player.transform.position = Vector3.zero;
-        }
-    }
-
 
     IEnumerator CoLoding()
     {
