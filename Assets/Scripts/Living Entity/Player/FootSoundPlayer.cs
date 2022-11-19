@@ -27,9 +27,15 @@ public class FootSoundPlayer : MonoBehaviour
             prevFootstepCollection = footstepCollection;
 
             if (hit.transform.name == "Terrain")
+            {
+                audioSource.volume = 0.1f;
                 footstepCollection = footstepCollections[0];
+            }
             else
+            {
+                audioSource.volume = 0.3f;
                 footstepCollection = footstepCollections[1];
+            }
 
             if (footstepCollection != prevFootstepCollection)
                 audioSource.Stop();

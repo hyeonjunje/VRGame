@@ -13,11 +13,6 @@ public class BGMManager : MonoBehaviour
     private void Start()
     {
         SetSlots();
-
-        foreach(var hihi in FindObjectsOfType<AudioListener>())
-        {
-            Debug.Log(hihi.name);
-        }
     }
 
     private void SetSlots()

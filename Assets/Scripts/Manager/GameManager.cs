@@ -62,7 +62,8 @@ public class GameManager : MonoBehaviour
         gameEndPanel.SetActive(true);
         GameInfoText.text = "Game Over";
         GameInfoText.color = Color.red;
-        clearTimeText.text = "클리어 시간 : " + (System.DateTime.Now - startTime).TotalSeconds;
+        double totalTime = (System.DateTime.Now - startTime).TotalSeconds;
+        clearTimeText.text = "클리어 시간 : " + (int)(totalTime / 60) + "분 " + (int)(totalTime % 60) + "초";
         killCountText.text = "좀비를 죽인 횟수 : " + killCount;
 
         StartCoroutine(CoReadyToReStart());

@@ -29,7 +29,7 @@ public class LobbyScene : BaseScene
         SceneManagerEx.instance.player.init();
 
         // 플레이어 위치 설정Warp
-        SceneManagerEx.instance.player.Warp(transform.position, Quaternion.identity);
+        SceneManagerEx.instance.player.Warp(transform.position, transform.localRotation);
 
         if(CommunicationManager.isConnected)
             StartGame();

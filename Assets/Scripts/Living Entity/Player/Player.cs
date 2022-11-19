@@ -12,6 +12,7 @@ public class Player : LivingEntity
     [SerializeField] private Transform gunRightHandPos;
     [SerializeField] private Transform playerView;       // 캐릭터 시야
     [SerializeField] private FootSoundPlayer footSoundPlayer;
+    [SerializeField] private Image statusImage;  // 체력을 나타내는 이미지(hp에 따른 색만 조정)
 
     [Header("캐릭터 정보")]
     [SerializeField] private float playerSpeed;        // 캐릭터 속도
@@ -45,13 +46,19 @@ public class Player : LivingEntity
         animator = GetComponent<Animator>();
 
         Input.gyro.enabled = true;  // 휴대폰 내장 자이로 센서 enabled
-#if UNITY_EDITOR
-        isInnerGyro = false;
-#else
-        isInnerGyro = true;
-#endif
+
+        if (CommunicationManager.instance.inputType == EInputType.Bluetooth)
+            isInnerGyro = true;
+        else
+            isInnerGyro = false;
 
         init();  // 체력초기화
+    }
+
+    public override void init()
+    {
+        base.init();
+        statusImage.color = new Color(1f, (float)currentHp / hp, (float)currentHp / hp, 0f);
     }
 
 
@@ -99,6 +106,10 @@ public class Player : LivingEntity
         if (isInnerGyro)
         {
             playerView.Rotate(new Vector3(-Input.gyro.rotationRateUnbiased.x, -Input.gyro.rotationRateUnbiased.y, -Input.gyro.rotationRateUnbiased.z));
+        }
+        else if(CommunicationManager.instance.inputType == EInputType.NonArudino)
+        {
+            playerView.rotation = Quaternion.Euler(ic.headRotAngle);
         }
     }
 
@@ -176,6 +187,8 @@ public class Player : LivingEntity
 
         Debug.Log("아야");
         currentHp--;
+
+        statusImage.color = new Color(1f, (float)currentHp / hp, (float)currentHp / hp, 100f / 255f);
     }
 
 

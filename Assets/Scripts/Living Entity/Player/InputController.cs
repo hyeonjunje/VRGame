@@ -18,6 +18,8 @@ public class InputController : MonoBehaviour
     public Vector3 moveDir;       // 이동 방향
     public bool trySetting;       // 각도 세팅(초기화)
 
+    public Vector3 headRotAngle = Vector3.zero;  // 머리 각도(자이로 센서를 사용하지 않을 때는 이 값을 사용)
+
     // 아두이노로부터 받을 원시 데이터
     private string _dataString = null;
     public string dataString
@@ -174,11 +176,35 @@ public class InputController : MonoBehaviour
     }
 
 
+    private void NonArduinoVer()   // 모바일 빌드시 아두이노가 없어도 플레이되는 모드
+    {
+        moveDir = new Vector3(NonArduinoInput.instance.moveJoystick.Direction.x, 0, NonArduinoInput.instance.moveJoystick.Direction.y);
+
+
+
+        if (NonArduinoInput.isFire)
+            isFire = true;
+        else
+            isFire = false;
+
+
+        bodyRotAngle += new Vector3(0f, NonArduinoInput.instance.screenSlider.dir.x, 0f);
+        headRotAngle += new Vector3(-NonArduinoInput.instance.screenSlider.dir.y, NonArduinoInput.instance.screenSlider.dir.x, 0f);
+
+        gunRotAngle += new Vector3(-NonArduinoInput.instance.screenSlider.dir.y, NonArduinoInput.instance.screenSlider.dir.x, 0f);
+    }
+
+
+
     private void Update()
     {
         if(inputType == EInputType.DefaultInput)
         {
             ExtractDefaultInput();
+        }
+        else if(inputType == EInputType.NonArudino)
+        {
+            NonArduinoVer();
         }
 
         if (Input.GetKeyDown(KeyCode.Tab))

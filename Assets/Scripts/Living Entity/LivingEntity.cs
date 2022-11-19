@@ -27,7 +27,7 @@ public abstract class LivingEntity : MonoBehaviour
     public abstract void Dead();
 
 
-    public void init()
+    public virtual void init()
     {
         currentHp = hp;
     }

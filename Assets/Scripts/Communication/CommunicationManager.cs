@@ -38,6 +38,17 @@ public class CommunicationManager : MonoBehaviour
                 isConnected = true;
                 break;
         }
+
+        if(inputType == EInputType.NonArudino)
+        {
+            SettingManager.isArduino = true;
+            SettingManager.instance.ChangeMode();
+        }
+        else
+        {
+            SettingManager.isArduino = false;
+            SettingManager.instance.ChangeMode();
+        }
     }
 
 
