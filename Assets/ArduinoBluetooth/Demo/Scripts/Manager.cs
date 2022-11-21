@@ -5,8 +5,7 @@ using ArduinoBluetoothAPI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using System.Threading;
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 
 public class Manager : MonoBehaviour {
 
@@ -31,7 +30,6 @@ public class Manager : MonoBehaviour {
 	private InputController ic;
 
 	public string received_message;
-	private Thread thread;
 
 	private void Start()
 	{
@@ -54,11 +52,11 @@ public class Manager : MonoBehaviour {
 			bluetoothHelper.OnConnectionFailed += OnConnectionFailed;
 
 			//bluetoothHelper.OnDataReceived += OnMessageReceived; //read the data
+			DataReceive().Forget();
+
 
 			bluetoothHelper.setTerminatorBasedStream("\n");
 
-			thread = new Thread(DataReveive);
-			thread.Start();
 
 			if (bluetoothHelper.isDevicePaired())
 				Toggle_isDevicePaired.isOn = true;
@@ -87,23 +85,41 @@ public class Manager : MonoBehaviour {
 			bluetoothHelper.Disconnect();
 			Debug.Log("try to Disconnect");
 		});
-	}
+    }
+
+    private async UniTaskVoid DataReceive()
+    {
+        await UniTask.RunOnThreadPool(() =>
+        {
+            while (true)
+            {
+                ic.dataString = bluetoothHelper.Read();
+                Debug.Log(ic.dataString);
+            }
+        });
+    }
 
 
-	private void DataReveive()
+/*    private void DataReveive()
     {
 		while (true)
 		{
 			ic.dataString = bluetoothHelper.Read();
 			Debug.Log(ic.dataString);
 		}
+	}*/
+
+
+	public void WriteCom()
+	{
+		bluetoothHelper.SendData("Calibration");
 	}
 
 
-/*	void OnMessageReceived () {
-		received_message = bluetoothHelper.Read ();
-		ic.dataString = received_message;
-	}*/
+	/*	void OnMessageReceived () {
+			received_message = bluetoothHelper.Read ();
+			ic.dataString = received_message;
+		}*/
 
 
 	void OnConnected () {
@@ -132,7 +148,5 @@ public class Manager : MonoBehaviour {
 	void OnApplicationQuit () {
 		if (bluetoothHelper != null)
 			bluetoothHelper.Disconnect ();
-
-		thread.Abort();
 	}
 }

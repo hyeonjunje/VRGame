@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Head
   - Hands
+  - Potal
+  - UI
   layers:
   - Default
   - TransparentFX
@@ -18,12 +20,12 @@ TagManager:
   - HitBox
   - Player
   - EnemyHands
+  - Obstacle
   - 
+  - Surface
   - 
-  - 
-  - 
-  - 
-  - 
+  - Trigger
+  - Zombie
   - 
   - 
   - 
